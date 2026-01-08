@@ -1,20 +1,19 @@
 {
-  "name": "your-project-name",
+  "name": "tier-maker",
   "version": "1.0.0",
-  "description": "",
-  "source": "src/index.js",
+  "description": "一个类似 tier-maker 的网页应用，用于为元素进行排行分级",
+  "main": "index.js",
   "keywords": [
-    "web-component",
-    "custom-element"
+    "tier-maker",
+    "ranking",
+    "drag-drop",
+    "web-app"
   ],
   "author": "Jerome Joh",
   "license": "MIT",
-  "main": "dist/main.js",
-  "files": [
-    "dist"
-  ],
   "scripts": {
-    "build": "parcel build src/index.js --dist-dir dist --no-source-maps"
+    "dev": "python -m http.server 8000",
+    "build": "echo 'No build process needed for vanilla JS app'"
   },
   "devDependencies": {
     "parcel": "^2.16.0"
