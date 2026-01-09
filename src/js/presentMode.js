@@ -42,6 +42,8 @@ export class PresentMode {
     if (this.modal) {
       this.modal.remove();
       this.modal = null;
+      // 允许背景滚动
+      this.tierMaker.modalManager.allowBackgroundScroll();
     }
 
     // 更新主界面显示
@@ -125,6 +127,9 @@ export class PresentMode {
     `;
 
     document.body.appendChild(this.modal);
+
+    // 防止背景滚动
+    this.tierMaker.modalManager.preventBackgroundScroll();
 
     // 添加键盘事件监听
     this.bindKeyboardEvents();

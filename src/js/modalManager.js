@@ -36,6 +36,7 @@ export class ModalManager {
   openConfigModal() {
     const modal = document.getElementById('configModal');
     if (modal) {
+      this.preventBackgroundScroll();
       modal.classList.add('show');
       // 重新渲染配置列表
       const configList = document.getElementById('tierConfigList');
@@ -52,6 +53,7 @@ export class ModalManager {
     const modal = document.getElementById('configModal');
     if (modal) {
       modal.classList.remove('show');
+      this.allowBackgroundScroll();
     }
   }
 
@@ -70,6 +72,7 @@ export class ModalManager {
     const modal = document.getElementById('elementModal');
 
     if (nameInput && descInput && modal) {
+      this.preventBackgroundScroll();
       nameInput.value = element.name;
       descInput.value = element.description;
       modal.classList.add('show');
@@ -86,6 +89,7 @@ export class ModalManager {
     const modal = document.getElementById('elementModal');
     if (modal) {
       modal.classList.remove('show');
+      this.allowBackgroundScroll();
     }
     this.currentEditingElement = null;
   }
@@ -123,6 +127,7 @@ export class ModalManager {
       modal.classList.remove('show');
     });
     this.currentEditingElement = null;
+    this.allowBackgroundScroll();
   }
 
   /**
@@ -180,15 +185,18 @@ export class ModalManager {
       `;
 
       document.body.appendChild(modal);
+      this.preventBackgroundScroll();
       setTimeout(() => modal.classList.add('show'), 100);
 
       modal.addEventListener('confirm', () => {
         modal.remove();
+        this.allowBackgroundScroll();
         resolve(true);
       });
 
       modal.addEventListener('cancel', () => {
         modal.remove();
+        this.allowBackgroundScroll();
         resolve(false);
       });
 
@@ -196,6 +204,7 @@ export class ModalManager {
       modal.addEventListener('click', (e) => {
         if (e.target === modal) {
           modal.remove();
+          this.allowBackgroundScroll();
           resolve(false);
         }
       });
@@ -204,6 +213,7 @@ export class ModalManager {
       const handleEsc = (e) => {
         if (e.key === 'Escape') {
           modal.remove();
+          this.allowBackgroundScroll();
           document.removeEventListener('keydown', handleEsc);
           resolve(false);
         }
@@ -218,5 +228,23 @@ export class ModalManager {
    */
   showAlert(message) {
     alert(message);
+  }
+
+  /**
+   * 防止背景滚动
+   */
+  preventBackgroundScroll() {
+    document.body.classList.add('modal-open');
+  }
+
+  /**
+   * 允许背景滚动
+   */
+  allowBackgroundScroll() {
+    // 检查是否还有其他模态框打开
+    const openModals = document.querySelectorAll('.modal.show, .preview-modal.show, .present-modal.show');
+    if (openModals.length === 0) {
+      document.body.classList.remove('modal-open');
+    }
   }
 }

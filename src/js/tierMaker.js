@@ -597,6 +597,7 @@ export class TierMaker {
     const previewModal = document.querySelector('.preview-modal');
     if (previewModal) {
       previewModal.remove();
+      this.modalManager.allowBackgroundScroll();
     }
 
     // 执行导出
@@ -680,6 +681,7 @@ export class TierMaker {
       if (bulkTierList) {
         bulkTierList.innerHTML = this.renderer.renderBulkTierList();
       }
+      this.modalManager.preventBackgroundScroll();
       modal.classList.add('show');
     }
   }
@@ -691,6 +693,7 @@ export class TierMaker {
     const modal = document.getElementById('bulkActionsModal');
     if (modal) {
       modal.classList.remove('show');
+      this.modalManager.allowBackgroundScroll();
     }
   }
 

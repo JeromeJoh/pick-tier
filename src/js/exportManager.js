@@ -349,7 +349,7 @@ export class ExportManager {
       <div class="preview-content">
         <div class="preview-header">
           <h3>Export Preview</h3>
-          <button class="preview-close" onclick="this.closest('.preview-modal').remove()">×</button>
+          <button class="preview-close" onclick="this.closest('.preview-modal').remove(); this.tierMaker.modalManager.allowBackgroundScroll()">×</button>
         </div>
         <div class="preview-info">
           <strong>Format:</strong> ${format.toUpperCase()} | 
@@ -363,7 +363,7 @@ export class ExportManager {
           <button class="btn btn-primary" onclick="tierMaker.confirmExport('${format}')">
             📸 Export ${format.toUpperCase()}
           </button>
-          <button class="btn" onclick="this.closest('.preview-modal').remove()">
+          <button class="btn" onclick="this.closest('.preview-modal').remove(); tierMaker.modalManager.allowBackgroundScroll()">
             Cancel
           </button>
         </div>
@@ -377,12 +377,14 @@ export class ExportManager {
 
     // 添加到页面并显示
     document.body.appendChild(modal);
+    this.tierMaker.modalManager.preventBackgroundScroll();
     setTimeout(() => modal.classList.add('show'), 100);
 
     // 点击外部关闭
     modal.addEventListener('click', (e) => {
       if (e.target === modal) {
         modal.remove();
+        this.tierMaker.modalManager.allowBackgroundScroll();
       }
     });
 
@@ -390,6 +392,7 @@ export class ExportManager {
     const handleEsc = (e) => {
       if (e.key === 'Escape') {
         modal.remove();
+        this.tierMaker.modalManager.allowBackgroundScroll();
         document.removeEventListener('keydown', handleEsc);
       }
     };
