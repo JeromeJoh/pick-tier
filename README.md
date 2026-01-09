@@ -13,7 +13,17 @@ A tier ranking web application similar to tier-maker website, for ranking and ca
 - **✏️ Element Management**: 
   - Edit element names and descriptions
   - Delete unwanted elements
-- **🎨 Personalized Configuration**: Fully customizable tier styles and layouts
+- **🎬 Present Mode**: 
+  - Slideshow-style presentation of elements
+  - Quick ranking with keyboard shortcuts
+  - Auto-advance and manual navigation
+  - Immersive full-screen experience
+- **📸 Export Functionality**: 
+  - Export tier rankings as high-quality PNG or JPEG images
+  - Professional layout with headers, footers, and branding
+  - Automatic timestamp and generation info
+- **🎨 Modern UI Design**: Clean, documentation-style interface with sidebar navigation
+- **📱 Responsive Layout**: Optimized for both desktop and mobile devices
 
 ## 🚀 Quick Start
 
@@ -53,6 +63,30 @@ A tier ranking web application similar to tier-maker website, for ranking and ca
 2. Click "✏️" to edit element information
 3. Click "❌" to delete elements
 
+### Present Mode
+1. Click the "🎬 Present Mode" button in the sidebar or main controls
+2. Elements will be displayed one by one in full-screen slideshow format
+3. Use navigation controls or keyboard shortcuts:
+   - **Arrow Keys**: Navigate between elements
+   - **Number Keys (1-5)**: Quick rank to corresponding tier
+   - **Space**: Next element
+   - **S**: Skip current element
+   - **Escape**: Exit present mode
+4. Click tier buttons to instantly rank the current element
+5. Toggle auto-advance for hands-free presentation
+6. Progress bar shows completion status
+
+### Export Rankings
+1. Click the "📸 Export Image" button in the sidebar or main controls
+2. Choose from the available options:
+   - **Preview PNG/JPEG**: See how the exported image will look before downloading
+   - **Export PNG/JPEG**: Directly export without preview
+3. In preview mode:
+   - Review the generated image with professional layout
+   - Check image dimensions and element count
+   - Confirm export or cancel if adjustments are needed
+4. Exported images include professional headers, timestamps, and branding
+
 ## 🛠️ Technical Features
 
 - **Pure Native Technology**: Built with HTML5, CSS3, and JavaScript, no framework dependencies
@@ -80,6 +114,8 @@ pick-tier/
 │   │   ├── dragHandler.js  # Drag and drop functionality
 │   │   ├── modalManager.js # Modal management
 │   │   ├── renderer.js     # HTML rendering
+│   │   ├── exportManager.js # Image export functionality
+│   │   ├── presentMode.js  # Slideshow presentation mode
 │   │   └── utils.js        # Utility functions
 │   └── css/
 │       ├── base.css        # Base styles

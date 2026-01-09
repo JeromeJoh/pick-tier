@@ -108,6 +108,8 @@ export class ModalManager {
       this.currentEditingElement.name = name;
       this.currentEditingElement.description = description;
       this.tierMaker.updateDisplay();
+      // 触发自动保存
+      this.tierMaker.autoSave();
     }
 
     this.closeElementModal();
@@ -130,6 +132,84 @@ export class ModalManager {
    */
   showConfirm(message) {
     return confirm(message);
+  }
+
+  /**
+   * 显示自定义重置确认对话框
+   * @param {Object} stats 重置统计信息
+   * @returns {Promise<boolean>} 用户确认结果
+   */
+  showResetConfirm(stats) {
+    return new Promise((resolve) => {
+      const modal = document.createElement('div');
+      modal.className = 'modal';
+      modal.innerHTML = `
+        <div class="modal-content">
+          <h3>Reset All Rankings</h3>
+          <div class="reset-confirmation">
+            <h4>⚠️ This action will reset all rankings</h4>
+            <p>All ranked elements will be moved back to the elements pool. This action cannot be undone.</p>
+          </div>
+          <div class="reset-stats">
+            <div class="reset-stats-item">
+              <span class="reset-stats-label">Total Elements:</span>
+              <span class="reset-stats-value">${stats.totalElements}</span>
+            </div>
+            <div class="reset-stats-item">
+              <span class="reset-stats-label">Ranked Elements:</span>
+              <span class="reset-stats-value">${stats.rankedElements}</span>
+            </div>
+            <div class="reset-stats-item">
+              <span class="reset-stats-label">Pool Elements:</span>
+              <span class="reset-stats-value">${stats.poolElements}</span>
+            </div>
+            <div class="reset-stats-item reset-stats-total">
+              <span class="reset-stats-label">Elements to Reset:</span>
+              <span class="reset-stats-value">${stats.rankedElements}</span>
+            </div>
+          </div>
+          <div class="modal-actions">
+            <button class="btn btn-warning" onclick="this.closest('.modal').dispatchEvent(new CustomEvent('confirm'))">
+              🔄 Reset Rankings
+            </button>
+            <button class="btn" onclick="this.closest('.modal').dispatchEvent(new CustomEvent('cancel'))">
+              Cancel
+            </button>
+          </div>
+        </div>
+      `;
+
+      document.body.appendChild(modal);
+      setTimeout(() => modal.classList.add('show'), 100);
+
+      modal.addEventListener('confirm', () => {
+        modal.remove();
+        resolve(true);
+      });
+
+      modal.addEventListener('cancel', () => {
+        modal.remove();
+        resolve(false);
+      });
+
+      // 点击外部取消
+      modal.addEventListener('click', (e) => {
+        if (e.target === modal) {
+          modal.remove();
+          resolve(false);
+        }
+      });
+
+      // ESC键取消
+      const handleEsc = (e) => {
+        if (e.key === 'Escape') {
+          modal.remove();
+          document.removeEventListener('keydown', handleEsc);
+          resolve(false);
+        }
+      };
+      document.addEventListener('keydown', handleEsc);
+    });
   }
 
   /**

@@ -27,7 +27,45 @@ Your Pick Tier application is now ready to use. The server is running at `http:/
 - Click "✏️" to edit element name and description
 - Click "❌" to delete unwanted elements
 
-### 5. Personalized Configuration
+### 5. Present Mode (Slideshow)
+- Click the "🎬 Present Mode" button to enter slideshow presentation
+- Features include:
+  - **Full-screen display**: Immersive viewing experience for each element
+  - **Navigation controls**: Previous/Next buttons and keyboard shortcuts
+  - **Quick ranking**: Click tier buttons or use number keys (1-5) for instant ranking
+  - **Auto-advance**: Optional automatic progression through elements
+  - **Progress tracking**: Visual progress bar and element counter
+  - **Keyboard shortcuts**:
+    - Arrow keys for navigation
+    - Number keys for quick tier assignment
+    - Space bar for next element
+    - 'S' key to skip element
+    - Escape to exit
+- Perfect for:
+  - Rapid ranking sessions
+  - Presentation to groups
+  - Focused element evaluation
+  - Streamlined workflow
+
+### 6. Export Rankings
+- Click the "📸 Export Image" button in the sidebar or main controls
+- Choose from four options:
+  - **Preview PNG**: See a preview of the PNG export before downloading
+  - **Preview JPEG**: See a preview of the JPEG export before downloading  
+  - **Export PNG**: Directly export as PNG (best quality)
+  - **Export JPEG**: Directly export as JPEG (smaller file size)
+- Preview features:
+  - Full-size preview of the generated image
+  - Image dimensions and statistics display
+  - Confirm or cancel before final export
+- The application will generate a professional-looking image with:
+  - Clean header with title and timestamp
+  - All tier rows with proper colors and labels
+  - Element images with names (when space allows)
+  - Footer with generation info
+- The image will be automatically downloaded to your device
+
+### 6. Personalized Configuration
 - Each tier can have unique colors
 - Tier labels can be directly clicked to edit
 - Support for unlimited number of tiers
@@ -43,8 +81,10 @@ Your Pick Tier application is now ready to use. The server is running at `http:/
 
 - **Pure Native Development**: No framework dependencies, fast loading
 - **HTML5 Drag API**: Native drag support
+- **Canvas API**: High-quality image generation and export
 - **CSS3 Animations**: Smooth visual effects
-- **ES6+ JavaScript**: Modern code structure
+- **ES6+ JavaScript**: Modern modular code structure
+- **File API**: Local image processing and export
 
 ## 🚀 Usage Suggestions
 
