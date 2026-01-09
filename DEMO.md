@@ -1,66 +1,66 @@
-# 🎮 Tier Maker 演示指南
+# 🎮 Pick Tier Demo Guide
 
-## 🌟 应用已成功创建！
+## 🌟 Application Successfully Created!
 
-你的 Tier Maker 应用现在已经可以使用了。服务器正在 `http://localhost:8000` 运行。
+Your Pick Tier application is now ready to use. The server is running at `http://localhost:8000`.
 
-## 🎯 核心功能演示
+## 🎯 Core Features Demo
 
-### 1. 上传图片元素
-- 点击"📁 上传图片"按钮
-- 选择多个图片文件（支持 JPG、PNG、GIF 等格式）
-- 图片会自动显示在底部的"元素池"中
+### 1. Upload Image Elements
+- Click the "📁 Upload Images" button
+- Select multiple image files (supports JPG, PNG, GIF, etc.)
+- Images will automatically appear in the "Elements Pool" at the bottom
 
-### 2. 拖拽分级
-- 从元素池拖拽图片到 S、A、B、C、D 分级行
-- 拖拽时会有视觉反馈和吸附效果
-- 可以在不同分级间重新调整
+### 2. Drag & Drop Ranking
+- Drag images from the elements pool to S, A, B, C, D tier rows
+- Visual feedback and snap effects during dragging
+- Re-adjust between different tiers as needed
 
-### 3. 自定义分级
-- 点击"⚙️ 配置分级"打开设置面板
-- 修改分级名称（如：神级、优秀、良好等）
-- 更改分级颜色
-- 添加新的分级或删除现有分级
+### 3. Customize Tiers
+- Click "⚙️ Configure Tiers" to open settings panel
+- Modify tier names (e.g., God Tier, Excellent, Good, etc.)
+- Change tier colors
+- Add new tiers or delete existing ones
 
-### 4. 元素管理
-- 悬停在元素上显示编辑和删除按钮
-- 点击"✏️"编辑元素名称和描述
-- 点击"❌"删除不需要的元素
+### 4. Element Management
+- Hover over elements to show edit and delete buttons
+- Click "✏️" to edit element name and description
+- Click "❌" to delete unwanted elements
 
-### 5. 个性化配置
-- 每个分级都可以设置独特的颜色
-- 分级标签可以直接点击编辑
-- 支持添加无限数量的分级
+### 5. Personalized Configuration
+- Each tier can have unique colors
+- Tier labels can be directly clicked to edit
+- Support for unlimited number of tiers
 
-## 🎨 设计特色
+## 🎨 Design Features
 
-- **现代化界面**: 渐变背景、圆角设计、阴影效果
-- **流畅动画**: 拖拽、悬停、缩放等动画效果
-- **响应式布局**: 支持桌面和移动设备
-- **直观操作**: 拖拽即用，无需学习成本
+- **Modern Interface**: Gradient backgrounds, rounded corners, shadow effects
+- **Smooth Animations**: Drag, hover, scale and other animation effects
+- **Responsive Layout**: Supports desktop and mobile devices
+- **Intuitive Operations**: Drag-and-drop ready, no learning curve
 
-## 🔧 技术实现
+## 🔧 Technical Implementation
 
-- **纯原生开发**: 无框架依赖，加载速度快
-- **HTML5 拖拽 API**: 原生拖拽支持
-- **CSS3 动画**: 流畅的视觉效果
-- **ES6+ JavaScript**: 现代化的代码结构
+- **Pure Native Development**: No framework dependencies, fast loading
+- **HTML5 Drag API**: Native drag support
+- **CSS3 Animations**: Smooth visual effects
+- **ES6+ JavaScript**: Modern code structure
 
-## 🚀 使用建议
+## 🚀 Usage Suggestions
 
-1. **准备素材**: 收集要排行的图片（游戏角色、电影、食物等）
-2. **批量上传**: 一次性上传所有图片
-3. **快速分级**: 通过拖拽快速完成初步分级
-4. **精细调整**: 使用编辑功能完善元素信息
-5. **个性定制**: 根据主题调整分级名称和颜色
+1. **Prepare Materials**: Collect images to rank (game characters, movies, food, etc.)
+2. **Batch Upload**: Upload all images at once
+3. **Quick Ranking**: Complete initial ranking through drag-and-drop
+4. **Fine Adjustment**: Use edit functions to refine element information
+5. **Personal Customization**: Adjust tier names and colors according to theme
 
-## 💡 应用场景
+## 💡 Application Scenarios
 
-- 🎮 游戏角色强度排行
-- 🎬 电影/动漫评分分级
-- 🍕 美食喜好排行
-- 📱 应用/工具推荐分级
-- 🏀 体育明星实力排行
-- 🎵 音乐专辑评价分级
+- 🎮 Game character strength ranking
+- 🎬 Movie/anime rating tiers
+- 🍕 Food preference ranking
+- 📱 App/tool recommendation tiers
+- 🏀 Sports star performance ranking
+- 🎵 Music album rating tiers
 
-现在就打开浏览器访问 `http://localhost:8000` 开始使用吧！
+Now open your browser and visit `http://localhost:8000` to start using!

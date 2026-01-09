@@ -1,89 +1,97 @@
-# 🏆 Tier Maker - 排行分级工具
+# 🏆 Pick Tier - Ranking Tool
 
-一个类似 tier-maker 网站的网页应用，用于为一系列同类元素进行排行分级。
+A tier ranking web application similar to tier-maker website, for ranking and categorizing elements.
 
-## ✨ 主要功能
+## ✨ Key Features
 
-- **📁 图片上传**: 支持批量上传图片作为待分级元素
-- **🎯 拖拽分级**: 直观的拖拽操作，将元素拖拽到不同分级槽
-- **⚙️ 自定义分级**: 
-  - 修改分级标签名称
-  - 自定义分级颜色
-  - 添加/删除分级
-- **✏️ 元素管理**: 
-  - 编辑元素名称和描述
-  - 删除不需要的元素
-- **🎨 个性化配置**: 完全自定义的分级样式和布局
+- **📁 Image Upload**: Support batch upload of images as ranking elements
+- **🎯 Drag & Drop Ranking**: Intuitive drag-and-drop operations to move elements to different tier slots
+- **⚙️ Custom Tiers**: 
+  - Modify tier label names
+  - Customize tier colors
+  - Add/remove tiers
+- **✏️ Element Management**: 
+  - Edit element names and descriptions
+  - Delete unwanted elements
+- **🎨 Personalized Configuration**: Fully customizable tier styles and layouts
 
-## 🚀 快速开始
+## 🚀 Quick Start
 
-1. 克隆项目到本地
-2. 在项目目录中启动本地服务器：
+1. Clone the project locally
+2. Start a local server in the project directory:
    ```bash
-   # 使用 Python (推荐)
+   # Using Python (recommended)
    python -m http.server 8000
    
-   # 或使用 Node.js
+   # Or using Node.js
    npx serve .
    
-   # 或使用任何其他静态文件服务器
+   # Or any other static file server
    ```
-3. 在浏览器中打开 `http://localhost:8000`
+3. Open `http://localhost:8000` in your browser
 
-## 📖 使用说明
+## 📖 Usage Guide
 
-### 上传元素
-1. 点击"📁 上传图片"按钮
-2. 选择一个或多个图片文件
-3. 图片将出现在底部的"元素池"中
+### Upload Elements
+1. Click the "📁 Upload Images" button
+2. Select one or more image files
+3. Images will appear in the "Elements Pool" at the bottom
 
-### 分级操作
-1. 从元素池中拖拽元素到对应的分级行
-2. 元素会自动吸附到分级槽中
-3. 可以在不同分级间重新拖拽调整
+### Ranking Operations
+1. Drag elements from the pool to corresponding tier rows
+2. Elements will automatically snap to tier slots
+3. You can re-drag between different tiers to adjust
 
-### 自定义分级
-1. 点击"⚙️ 配置分级"按钮
-2. 修改分级标签名称
-3. 选择分级颜色
-4. 添加新分级或删除现有分级
+### Customize Tiers
+1. Click the "⚙️ Configure Tiers" button
+2. Modify tier label names
+3. Choose tier colors
+4. Add new tiers or delete existing ones
 
-### 编辑元素
-1. 悬停在元素上显示操作按钮
-2. 点击"✏️"编辑元素信息
-3. 点击"❌"删除元素
+### Edit Elements
+1. Hover over elements to show action buttons
+2. Click "✏️" to edit element information
+3. Click "❌" to delete elements
 
-## 🛠️ 技术特点
+## 🛠️ Technical Features
 
-- **纯原生技术**: 使用 HTML5、CSS3 和 JavaScript，无需框架
-- **响应式设计**: 支持桌面和移动设备
-- **流畅动画**: 使用 CSS 动画和过渡效果
-- **直观交互**: 拖拽、悬停、点击等丰富的交互方式
-- **本地存储**: 所有数据在浏览器本地处理，无需服务器
+- **Pure Native Technology**: Built with HTML5, CSS3, and JavaScript, no framework dependencies
+- **Responsive Design**: Supports desktop and mobile devices
+- **Smooth Animations**: CSS animations and transition effects
+- **Intuitive Interactions**: Rich interactions including drag-drop, hover, click
+- **Local Processing**: All data processed locally in browser, no server required
 
-## 📱 浏览器支持
+## 📱 Browser Support
 
 - Chrome 60+
 - Firefox 55+
 - Safari 12+
 - Edge 79+
 
-## 🎯 项目结构
+## 🎯 Project Structure
 
 ```
-tier-maker/
-├── index.html          # 主页面
-├── index.js            # 应用逻辑
-├── styles.css          # 样式文件
-├── base.css            # 基础样式
-├── package.json        # 项目配置
-└── README.md           # 说明文档
+pick-tier/
+├── index.html              # Main page
+├── src/
+│   ├── js/
+│   │   ├── main.js         # Application entry point
+│   │   ├── tierMaker.js    # Main application class
+│   │   ├── dragHandler.js  # Drag and drop functionality
+│   │   ├── modalManager.js # Modal management
+│   │   ├── renderer.js     # HTML rendering
+│   │   └── utils.js        # Utility functions
+│   └── css/
+│       ├── base.css        # Base styles
+│       └── styles.css      # Main styles
+├── package.json            # Project configuration
+└── README.md              # Documentation
 ```
 
-## 🤝 贡献
+## 🤝 Contributing
 
-欢迎提交 Issue 和 Pull Request 来改进这个项目！
+Welcome to submit Issues and Pull Requests to improve this project!
 
-## 📄 许可证
+## 📄 License
 
 MIT License
