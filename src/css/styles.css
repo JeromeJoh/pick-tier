@@ -258,11 +258,31 @@ body {
   min-height: 100px;
   transition: all 0.2s ease;
   border-left: 1px solid #e5e7eb;
+  position: relative;
 }
 
 .tier-content.drag-over {
   background: #eff6ff;
   border-left-color: #2563eb;
+  position: relative;
+}
+
+.tier-content.drag-over::after {
+  content: "📁 Drop images here to add and rank in this tier";
+  color: #2563eb;
+  font-weight: 600;
+  font-size: 0.875rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(239, 246, 255, 0.95);
+  border-radius: 0 6px 6px 0;
+  z-index: 10;
 }
 
 /* 元素池 */
@@ -291,11 +311,30 @@ body {
   border-radius: 8px;
   transition: all 0.2s ease;
   background: #fafafa;
+  position: relative;
 }
 
 .elements-container.drag-over {
   border-color: #2563eb;
   background: #eff6ff;
+  border-style: solid;
+}
+
+.elements-container.drag-over::after {
+  content: "📁 Drop images here to add them to the pool";
+  color: #2563eb;
+  font-weight: 600;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: rgba(239, 246, 255, 0.9);
+  border-radius: 6px;
 }
 
 .elements-container:empty::after {
@@ -307,6 +346,14 @@ body {
   justify-content: center;
   height: 100px;
   width: 100%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.elements-container:not(:empty)::after {
+  display: none;
 }
 
 /* 元素样式 */
