@@ -214,7 +214,7 @@ export class Renderer {
              ondragover="tierMaker.handleDragOver(event)"
              ondragleave="tierMaker.handleDragLeave(event)">
           ${tier.elements.map(elementId => {
-      const element = this.tierMaker.elements.find(el => el.id == elementId);
+      const element = this.tierMaker.elements.find(el => String(el.id) === String(elementId));
       return element ? this.renderElement(element) : '';
     }).join('')}
           ${tier.elements.length === 0 ? '<div class="empty-state"><p>Drop elements here</p></div>' : ''}

@@ -164,7 +164,7 @@ export class ExportManager {
     let elementCount = 0;
 
     for (const elementId of tier.elements) {
-      const element = this.tierMaker.elements.find(el => el.id == elementId);
+      const element = this.tierMaker.elements.find(el => String(el.id) === String(elementId));
       if (!element) continue;
 
       // 如果当前行放不下，换行

@@ -62,7 +62,7 @@ export class ModalManager {
    * @param {string} elementId 元素ID
    */
   openElementModal(elementId) {
-    const element = this.tierMaker.elements.find(el => el.id == elementId);
+    const element = this.tierMaker.elements.find(el => String(el.id) === String(elementId));
     if (!element) return;
 
     this.currentEditingElement = element;

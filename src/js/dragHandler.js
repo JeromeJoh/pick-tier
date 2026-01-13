@@ -190,7 +190,7 @@ export class DragHandler {
         };
 
         this.tierMaker.elements.push(element);
-        createdElements.push(element.id);
+        createdElements.push(String(element.id)); // 确保ID是字符串类型
         processedCount++;
 
         // 如果所有文件都处理完成，更新界面
@@ -318,11 +318,12 @@ export class DragHandler {
   handleDrop(event) {
     event.preventDefault();
     event.currentTarget.classList.remove('drag-over');
-
+    console.log('before', event.target, this.tierMaker.elements)
     if (!this.draggedElement) return;
 
     const tierId = event.currentTarget.dataset.tierId;
     this.tierMaker.moveElementToTier(this.draggedElement, tierId);
+    console.log('after', event.target, this.tierMaker.elements)
   }
 
   /**

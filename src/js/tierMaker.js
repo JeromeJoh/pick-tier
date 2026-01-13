@@ -161,7 +161,6 @@ export class TierMaker {
       elementsContainer.addEventListener('dragover', (e) => this.dragHandler.handleDragOver(e));
       elementsContainer.addEventListener('dragleave', (e) => this.dragHandler.handleDragLeave(e));
     }
-
     // 点击外部关闭导出选项
     document.addEventListener('click', (e) => {
       if (!e.target.closest('.export-button-wrapper')) {
@@ -225,9 +224,12 @@ export class TierMaker {
    * @param {string} tierId 分级ID
    */
   moveElementToTier(elementId, tierId) {
+    // 确保elementId是字符串类型，保持一致性
+    elementId = String(elementId);
+
     // 从所有分级中移除元素
     this.tiers.forEach(tier => {
-      tier.elements = tier.elements.filter(id => id !== elementId);
+      tier.elements = tier.elements.filter(id => String(id) !== elementId);
     });
 
     // 添加到目标分级
@@ -246,9 +248,12 @@ export class TierMaker {
    * @param {string} elementId 元素ID
    */
   moveElementToPool(elementId) {
+    // 确保elementId是字符串类型，保持一致性
+    elementId = String(elementId);
+
     // 从所有分级中移除元素
     this.tiers.forEach(tier => {
-      tier.elements = tier.elements.filter(id => id !== elementId);
+      tier.elements = tier.elements.filter(id => String(id) !== elementId);
     });
 
     this.updateDisplay();
@@ -262,7 +267,9 @@ export class TierMaker {
    * @returns {boolean} 是否在分级中
    */
   isElementInTier(elementId) {
-    return this.tiers.some(tier => tier.elements.includes(elementId));
+    // 确保elementId是字符串类型，保持一致性
+    elementId = String(elementId);
+    return this.tiers.some(tier => tier.elements.some(id => String(id) === elementId));
   }
 
   /**
@@ -274,7 +281,7 @@ export class TierMaker {
       const tierContent = document.querySelector(`[data-tier-id="${tier.id}"]`);
       if (tierContent) {
         tierContent.innerHTML = tier.elements.map(elementId => {
-          const element = this.elements.find(el => el.id == elementId);
+          const element = this.elements.find(el => String(el.id) === String(elementId));
           return element ? this.renderer.renderElement(element) : '';
         }).join('');
 
@@ -445,7 +452,7 @@ export class TierMaker {
   deleteElement(elementId) {
     if (this.modalManager.showConfirm('Are you sure you want to delete this element?')) {
       // 从元素列表中移除
-      this.elements = this.elements.filter(el => el.id != elementId);
+      this.elements = this.elements.filter(el => String(el.id) !== String(elementId));
 
       // 从所有分级中移除
       this.tiers.forEach(tier => {
