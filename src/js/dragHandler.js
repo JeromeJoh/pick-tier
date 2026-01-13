@@ -48,6 +48,11 @@ export class DragHandler {
   bindElementsPoolFileDrag() {
     // 使用事件委托，因为元素池可能会重新渲染
     document.addEventListener('dragover', (e) => {
+      // 如果正在拖拽应用内的元素，不处理文件拖拽
+      if (this.draggedElement) {
+        return;
+      }
+
       const elementsContainer = e.target.closest('.elements-container');
       const tierContent = e.target.closest('.tier-content');
 
@@ -71,6 +76,11 @@ export class DragHandler {
     });
 
     document.addEventListener('dragleave', (e) => {
+      // 如果正在拖拽应用内的元素，不处理文件拖拽
+      if (this.draggedElement) {
+        return;
+      }
+
       const elementsContainer = e.target.closest('.elements-container');
       const tierContent = e.target.closest('.tier-content');
 
@@ -86,6 +96,11 @@ export class DragHandler {
     });
 
     document.addEventListener('drop', (e) => {
+      // 如果正在拖拽应用内的元素，不处理文件拖拽
+      if (this.draggedElement) {
+        return;
+      }
+
       const elementsContainer = e.target.closest('.elements-container');
       const tierContent = e.target.closest('.tier-content');
 
@@ -259,15 +274,41 @@ export class DragHandler {
    * @param {DragEvent} event 拖拽事件
    */
   handleDragStart(event) {
-    const elementId = event.target.closest('.element').dataset.elementId;
+    // 使用 currentTarget 而不是 target，因为事件是绑定在外层 div 上的
+    // currentTarget 始终是绑定事件的元素（外层 div）
+    // target 可能是内层的子元素（img, div 等）
+    const elementContainer = event.currentTarget;
+
+    // 验证这确实是一个元素容器
+    if (!elementContainer || !elementContainer.classList.contains('element')) {
+      console.warn('Invalid element container for drag start');
+      event.preventDefault();
+      return;
+    }
+
+    // 如果拖拽起始点是按钮，阻止拖拽
+    if (event.target.classList.contains('element-action')) {
+      event.preventDefault();
+      return;
+    }
+
+    const elementId = elementContainer.dataset.elementId;
+    if (!elementId) {
+      console.warn('No element ID found for drag start');
+      event.preventDefault();
+      return;
+    }
+
     this.draggedElement = elementId;
-    event.target.closest('.element').classList.add('dragging');
+    elementContainer.classList.add('dragging');
 
     // 显示拖拽指示器
     this.dragIndicator.textContent = 'Drag to tier area';
     this.dragIndicator.classList.add('show');
 
     event.dataTransfer.effectAllowed = 'move';
+    // 设置拖拽数据，确保拖拽操作有效
+    event.dataTransfer.setData('text/plain', elementId);
   }
 
   /**
@@ -275,7 +316,12 @@ export class DragHandler {
    * @param {DragEvent} event 拖拽事件
    */
   handleDragEnd(event) {
-    event.target.closest('.element').classList.remove('dragging');
+    // 使用 currentTarget 而不是 target.closest，保持与 handleDragStart 的一致性
+    const elementContainer = event.currentTarget;
+    if (elementContainer && elementContainer.classList.contains('element')) {
+      elementContainer.classList.remove('dragging');
+    }
+
     this.draggedElement = null;
 
     // 隐藏拖拽指示器
@@ -318,12 +364,11 @@ export class DragHandler {
   handleDrop(event) {
     event.preventDefault();
     event.currentTarget.classList.remove('drag-over');
-    console.log('before', event.target, this.tierMaker.elements)
+
     if (!this.draggedElement) return;
 
     const tierId = event.currentTarget.dataset.tierId;
     this.tierMaker.moveElementToTier(this.draggedElement, tierId);
-    console.log('after', event.target, this.tierMaker.elements)
   }
 
   /**

@@ -154,13 +154,90 @@ export class TierMaker {
       imageInput.addEventListener('change', (e) => this.handleFileUpload(e));
     }
 
-    // 元素池拖拽事件
-    const elementsContainer = document.getElementById('elementsContainer');
-    if (elementsContainer) {
-      elementsContainer.addEventListener('drop', (e) => this.dragHandler.handlePoolDrop(e));
-      elementsContainer.addEventListener('dragover', (e) => this.dragHandler.handleDragOver(e));
-      elementsContainer.addEventListener('dragleave', (e) => this.dragHandler.handleDragLeave(e));
+    // 使用事件委托绑定拖拽事件到主容器
+    const mainContent = document.querySelector('.main-content');
+    if (mainContent) {
+      // 分级区域拖拽事件
+      mainContent.addEventListener('dragover', (e) => {
+        const tierContent = e.target.closest('.tier-content');
+        if (tierContent && this.dragHandler.getDraggedElement()) {
+          // 设置正确的currentTarget并调用dragHandler
+          Object.defineProperty(e, 'currentTarget', {
+            value: tierContent,
+            writable: false
+          });
+          this.dragHandler.handleDragOver(e);
+        }
+      });
+
+      mainContent.addEventListener('dragleave', (e) => {
+        const tierContent = e.target.closest('.tier-content');
+        if (tierContent && this.dragHandler.getDraggedElement()) {
+          Object.defineProperty(e, 'currentTarget', {
+            value: tierContent,
+            writable: false
+          });
+          this.dragHandler.handleDragLeave(e);
+        }
+      });
+
+      mainContent.addEventListener('drop', (e) => {
+        const tierContent = e.target.closest('.tier-content');
+        if (tierContent && this.dragHandler.getDraggedElement()) {
+          e.preventDefault();
+          const tierId = tierContent.dataset.tierId;
+          const draggedElementId = this.dragHandler.getDraggedElement();
+
+          // 直接调用moveElementToTier，不通过dragHandler
+          this.moveElementToTier(draggedElementId, tierId);
+
+          // 清理拖拽状态
+          tierContent.classList.remove('drag-over');
+          this.dragHandler.draggedElement = null;
+          this.dragHandler.dragIndicator.classList.remove('show');
+        }
+      });
+
+      // 元素池拖拽事件
+      mainContent.addEventListener('dragover', (e) => {
+        const elementsContainer = e.target.closest('.elements-container');
+        if (elementsContainer && this.dragHandler.getDraggedElement()) {
+          Object.defineProperty(e, 'currentTarget', {
+            value: elementsContainer,
+            writable: false
+          });
+          this.dragHandler.handleDragOver(e);
+        }
+      });
+
+      mainContent.addEventListener('dragleave', (e) => {
+        const elementsContainer = e.target.closest('.elements-container');
+        if (elementsContainer && this.dragHandler.getDraggedElement()) {
+          Object.defineProperty(e, 'currentTarget', {
+            value: elementsContainer,
+            writable: false
+          });
+          this.dragHandler.handleDragLeave(e);
+        }
+      });
+
+      mainContent.addEventListener('drop', (e) => {
+        const elementsContainer = e.target.closest('.elements-container');
+        if (elementsContainer && this.dragHandler.getDraggedElement()) {
+          e.preventDefault();
+          const draggedElementId = this.dragHandler.getDraggedElement();
+
+          // 直接调用moveElementToPool，不通过dragHandler
+          this.moveElementToPool(draggedElementId);
+
+          // 清理拖拽状态
+          elementsContainer.classList.remove('drag-over');
+          this.dragHandler.draggedElement = null;
+          this.dragHandler.dragIndicator.classList.remove('show');
+        }
+      });
     }
+
     // 点击外部关闭导出选项
     document.addEventListener('click', (e) => {
       if (!e.target.closest('.export-button-wrapper')) {

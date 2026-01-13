@@ -209,10 +209,7 @@ export class Renderer {
           ${tier.label}
         </div>
         <div class="tier-content" 
-             data-tier-id="${tier.id}"
-             ondrop="tierMaker.handleDrop(event)"
-             ondragover="tierMaker.handleDragOver(event)"
-             ondragleave="tierMaker.handleDragLeave(event)">
+             data-tier-id="${tier.id}">
           ${tier.elements.map(elementId => {
       const element = this.tierMaker.elements.find(el => String(el.id) === String(elementId));
       return element ? this.renderElement(element) : '';
@@ -248,7 +245,7 @@ export class Renderer {
            data-tooltip="${element.name}"
            ondragstart="tierMaker.handleDragStart(event)"
            ondragend="tierMaker.handleDragEnd(event)">
-        <img src="${element.src}" alt="${element.name}" loading="lazy">
+        <img src="${element.src}" alt="${element.name}" loading="lazy" draggable="false">
         <div class="element-info">${element.name}</div>
         <div class="element-actions">
           <button class="element-action edit-btn" onclick="tierMaker.editElement('${element.id}')" title="Edit">

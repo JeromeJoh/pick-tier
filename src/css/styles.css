@@ -433,6 +433,13 @@ body {
   justify-content: center;
   transition: all 0.2s ease;
   color: white;
+  pointer-events: auto;
+  /* 防止按钮干扰拖拽 */
+  -webkit-user-drag: none;
+  -khtml-user-drag: none;
+  -moz-user-drag: none;
+  -o-user-drag: none;
+  user-drag: none;
 }
 
 .edit-btn {
