@@ -274,9 +274,10 @@ export class TierMaker {
             src: e.target.result
           };
           this.elements.push(element);
-          this.updateElementsPool();
-          // 更新侧边栏统计
-          this.updateSidebarStats();
+
+          // 使用DOM添加而不是全局刷新
+          this.addElementToPoolDOM(element);
+
           // 自动保存
           this.autoSave();
         };
@@ -315,7 +316,9 @@ export class TierMaker {
       targetTier.elements.push(elementId);
     }
 
-    this.updateDisplay();
+    // 使用DOM移动而不是全局刷新
+    this.moveElementDOM(elementId, tierId);
+
     // 自动保存
     this.autoSave();
   }
@@ -333,7 +336,9 @@ export class TierMaker {
       tier.elements = tier.elements.filter(id => String(id) !== elementId);
     });
 
-    this.updateDisplay();
+    // 使用DOM移动而不是全局刷新
+    this.moveElementDOM(elementId, null);
+
     // 自动保存
     this.autoSave();
   }
@@ -377,6 +382,67 @@ export class TierMaker {
   }
 
   /**
+   * 移动单个元素到指定位置（不触发全局刷新）
+   * @param {string} elementId 元素ID
+   * @param {string} targetTierId 目标分级ID，null表示移动到元素池
+   */
+  moveElementDOM(elementId, targetTierId = null) {
+    // 查找元素的DOM节点
+    const elementDOM = document.querySelector(`[data-element-id="${elementId}"]`);
+    if (!elementDOM) {
+      console.warn('Element DOM not found:', elementId);
+      return;
+    }
+
+    // 移除元素（不触发动画）
+    elementDOM.style.animation = 'none';
+    elementDOM.remove();
+
+    // 找到目标容器
+    let targetContainer;
+    if (targetTierId) {
+      targetContainer = document.querySelector(`[data-tier-id="${targetTierId}"]`);
+      // 移除空状态提示
+      const emptyState = targetContainer?.querySelector('.empty-state');
+      if (emptyState) {
+        emptyState.remove();
+      }
+    } else {
+      targetContainer = document.getElementById('elementsContainer');
+    }
+
+    if (!targetContainer) {
+      console.warn('Target container not found:', targetTierId);
+      return;
+    }
+
+    // 创建新的元素DOM
+    const element = this.elements.find(el => String(el.id) === String(elementId));
+    if (!element) {
+      console.warn('Element data not found:', elementId);
+      return;
+    }
+
+    const tempDiv = document.createElement('div');
+    tempDiv.innerHTML = this.renderer.renderElement(element);
+    const newElementDOM = tempDiv.firstElementChild;
+
+    // 添加到目标容器（触发动画）
+    targetContainer.appendChild(newElementDOM);
+
+    // 检查源容器是否为空，如果为空则添加空状态提示
+    this.tiers.forEach(tier => {
+      const tierContent = document.querySelector(`[data-tier-id="${tier.id}"]`);
+      if (tierContent && tier.elements.length === 0 && !tierContent.querySelector('.empty-state')) {
+        tierContent.innerHTML = '<div class="empty-state"><p>Drop elements here</p></div>';
+      }
+    });
+
+    // 更新侧边栏统计
+    this.updateSidebarStats();
+  }
+
+  /**
    * 更新元素池显示
    */
   updateElementsPool() {
@@ -384,6 +450,35 @@ export class TierMaker {
     if (container) {
       container.innerHTML = this.renderer.renderPoolElements();
     }
+  }
+
+  /**
+   * 添加单个元素到元素池（不触发全局刷新）
+   * @param {Object} element 元素对象
+   */
+  addElementToPoolDOM(element) {
+    const container = document.getElementById('elementsContainer');
+    if (!container) {
+      console.warn('Elements container not found');
+      return;
+    }
+
+    // 移除空状态提示（如果存在）
+    const emptyState = container.querySelector('.empty-state');
+    if (emptyState) {
+      emptyState.remove();
+    }
+
+    // 创建新元素DOM
+    const tempDiv = document.createElement('div');
+    tempDiv.innerHTML = this.renderer.renderElement(element);
+    const newElementDOM = tempDiv.firstElementChild;
+
+    // 添加到元素池
+    container.appendChild(newElementDOM);
+
+    // 更新侧边栏统计
+    this.updateSidebarStats();
   }
 
   /**

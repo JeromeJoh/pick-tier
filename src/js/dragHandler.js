@@ -228,16 +228,56 @@ export class DragHandler {
               `Successfully added ${totalCount} image${totalCount > 1 ? 's' : ''} to ${tierLabel} tier!`,
               'success'
             );
+
+            // 批量添加元素到分级区域
+            const tierContent = document.querySelector(`[data-tier-id="${tierId}"]`);
+            if (tierContent) {
+              // 移除空状态提示
+              const emptyState = tierContent.querySelector('.empty-state');
+              if (emptyState) {
+                emptyState.remove();
+              }
+
+              // 添加所有新元素
+              createdElements.forEach(elementId => {
+                const element = this.tierMaker.elements.find(el => String(el.id) === elementId);
+                if (element) {
+                  const tempDiv = document.createElement('div');
+                  tempDiv.innerHTML = this.tierMaker.renderer.renderElement(element);
+                  tierContent.appendChild(tempDiv.firstElementChild);
+                }
+              });
+            }
           } else {
             // 显示成功消息
             this.tierMaker.showMessage(
               `Successfully added ${totalCount} image${totalCount > 1 ? 's' : ''} to elements pool!`,
               'success'
             );
+
+            // 批量添加元素到元素池
+            const container = document.getElementById('elementsContainer');
+            if (container) {
+              // 移除空状态提示
+              const emptyState = container.querySelector('.empty-state');
+              if (emptyState) {
+                emptyState.remove();
+              }
+
+              // 添加所有新元素
+              createdElements.forEach(elementId => {
+                const element = this.tierMaker.elements.find(el => String(el.id) === elementId);
+                if (element) {
+                  const tempDiv = document.createElement('div');
+                  tempDiv.innerHTML = this.tierMaker.renderer.renderElement(element);
+                  container.appendChild(tempDiv.firstElementChild);
+                }
+              });
+            }
           }
 
-          // 统一更新显示
-          this.tierMaker.updateDisplay();
+          // 更新侧边栏统计
+          this.tierMaker.updateSidebarStats();
           this.tierMaker.autoSave();
         }
       };
@@ -247,18 +287,57 @@ export class DragHandler {
         processedCount++;
 
         if (processedCount === totalCount) {
-          // 如果指定了分级ID，将成功处理的元素分配到该分级
-          if (tierId && createdElements.length > 0) {
-            const targetTier = this.tierMaker.tiers.find(t => t.id === tierId);
-            if (targetTier) {
-              createdElements.forEach(elementId => {
-                targetTier.elements.push(elementId);
-              });
+          // 如果有成功处理的元素，添加到界面
+          if (createdElements.length > 0) {
+            if (tierId) {
+              // 添加到分级
+              const targetTier = this.tierMaker.tiers.find(t => t.id === tierId);
+              if (targetTier) {
+                createdElements.forEach(elementId => {
+                  targetTier.elements.push(elementId);
+                });
+              }
+
+              // 批量添加元素到分级区域
+              const tierContent = document.querySelector(`[data-tier-id="${tierId}"]`);
+              if (tierContent) {
+                const emptyState = tierContent.querySelector('.empty-state');
+                if (emptyState) {
+                  emptyState.remove();
+                }
+
+                createdElements.forEach(elementId => {
+                  const element = this.tierMaker.elements.find(el => String(el.id) === elementId);
+                  if (element) {
+                    const tempDiv = document.createElement('div');
+                    tempDiv.innerHTML = this.tierMaker.renderer.renderElement(element);
+                    tierContent.appendChild(tempDiv.firstElementChild);
+                  }
+                });
+              }
+            } else {
+              // 添加到元素池
+              const container = document.getElementById('elementsContainer');
+              if (container) {
+                const emptyState = container.querySelector('.empty-state');
+                if (emptyState) {
+                  emptyState.remove();
+                }
+
+                createdElements.forEach(elementId => {
+                  const element = this.tierMaker.elements.find(el => String(el.id) === elementId);
+                  if (element) {
+                    const tempDiv = document.createElement('div');
+                    tempDiv.innerHTML = this.tierMaker.renderer.renderElement(element);
+                    container.appendChild(tempDiv.firstElementChild);
+                  }
+                });
+              }
             }
           }
 
-          // 统一更新显示
-          this.tierMaker.updateDisplay();
+          // 更新侧边栏统计
+          this.tierMaker.updateSidebarStats();
           this.tierMaker.autoSave();
 
           this.tierMaker.showMessage('Some files could not be processed. Check console for details.', 'error');
