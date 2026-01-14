@@ -23,10 +23,10 @@ export class StorageManager {
       };
 
       sessionStorage.setItem(this.storageKey, JSON.stringify(storageData));
-      console.log('数据已保存到会话存储');
+      console.log('Data saved to session storage');
       return true;
     } catch (error) {
-      console.error('保存数据到会话存储失败:', error);
+      console.error('Failed to save data to session storage:', error);
       return false;
     }
   }
@@ -39,7 +39,7 @@ export class StorageManager {
     try {
       const stored = sessionStorage.getItem(this.storageKey);
       if (!stored) {
-        console.log('会话存储中没有找到数据');
+        console.log('No data found in session storage');
         return null;
       }
 
@@ -47,14 +47,14 @@ export class StorageManager {
 
       // 检查版本兼容性
       if (storageData.version !== this.version) {
-        console.warn('存储数据版本不匹配，将使用默认数据');
+        console.warn('Storage data version mismatch, using default data');
         return null;
       }
 
-      console.log('从会话存储加载数据成功');
+      console.log('Data loaded from session storage successfully');
       return storageData.data;
     } catch (error) {
-      console.error('从会话存储加载数据失败:', error);
+      console.error('Failed to load data from session storage:', error);
       return null;
     }
   }
@@ -65,10 +65,10 @@ export class StorageManager {
   clearData() {
     try {
       sessionStorage.removeItem(this.storageKey);
-      console.log('会话存储数据已清除');
+      console.log('Session storage data cleared');
       return true;
     } catch (error) {
-      console.error('清除会话存储数据失败:', error);
+      console.error('Failed to clear session storage data:', error);
       return false;
     }
   }
@@ -84,7 +84,7 @@ export class StorageManager {
       sessionStorage.removeItem(test);
       return true;
     } catch (error) {
-      console.warn('会话存储不可用:', error);
+      console.warn('Session storage not available:', error);
       return false;
     }
   }
@@ -107,7 +107,7 @@ export class StorageManager {
         tiersCount: storageData.data.tiers?.length || 0
       };
     } catch (error) {
-      console.error('获取存储信息失败:', error);
+      console.error('Failed to get storage info:', error);
       return null;
     }
   }
@@ -138,10 +138,10 @@ export class StorageManager {
       document.body.removeChild(a);
       URL.revokeObjectURL(url);
 
-      console.log('数据导出成功');
+      console.log('Data exported successfully');
       return true;
     } catch (error) {
-      console.error('导出数据失败:', error);
+      console.error('Failed to export data:', error);
       return false;
     }
   }
@@ -154,7 +154,7 @@ export class StorageManager {
   importData(file) {
     return new Promise((resolve, reject) => {
       if (!file || file.type !== 'application/json') {
-        reject(new Error('请选择有效的JSON文件'));
+        reject(new Error('Please select a valid JSON file'));
         return;
       }
 
@@ -165,19 +165,19 @@ export class StorageManager {
 
           // 验证数据格式
           if (!importData.data || !importData.version) {
-            reject(new Error('无效的数据格式'));
+            reject(new Error('Invalid data format'));
             return;
           }
 
-          console.log('数据导入成功');
+          console.log('Data imported successfully');
           resolve(importData.data);
         } catch (error) {
-          reject(new Error('解析JSON文件失败: ' + error.message));
+          reject(new Error('Failed to parse JSON file: ' + error.message));
         }
       };
 
       reader.onerror = () => {
-        reject(new Error('读取文件失败'));
+        reject(new Error('Failed to read file'));
       };
 
       reader.readAsText(file);

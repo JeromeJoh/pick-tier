@@ -58,7 +58,7 @@ export class TierMaker {
    */
   loadFromStorage() {
     if (!this.storageManager.isStorageAvailable()) {
-      console.warn('会话存储不可用，将使用默认数据');
+      console.warn('Session storage not available, using default data');
       return;
     }
 
@@ -79,7 +79,7 @@ export class TierMaker {
         this.nextElementId = savedData.nextElementId;
       }
 
-      console.log(`已从会话存储恢复 ${this.elements.length} 个元素和 ${this.tiers.length} 个分级`);
+      console.log(`Restored ${this.elements.length} elements and ${this.tiers.length} tiers from session storage`);
     }
   }
 
@@ -106,7 +106,7 @@ export class TierMaker {
   showStorageStatus() {
     const storageInfo = this.storageManager.getStorageInfo();
     if (storageInfo && storageInfo.elementsCount > 0) {
-      this.showMessage(`已恢复 ${storageInfo.elementsCount} 个元素 (上次保存: ${storageInfo.lastModified})`, 'success');
+      this.showMessage(`Restored ${storageInfo.elementsCount} element${storageInfo.elementsCount > 1 ? 's' : ''} (Last saved: ${storageInfo.lastModified})`, 'success');
     }
   }
 
@@ -814,12 +814,35 @@ export class TierMaker {
   }
 
   /**
-   * 切换侧边栏显示状态（移动端）
+   * 切换侧边栏显示状态
    */
   toggleSidebar() {
     const sidebar = document.querySelector('.sidebar');
+    const toggleBtn = document.getElementById('sidebarToggle');
+    const overlay = document.getElementById('sidebarOverlay');
+
     if (sidebar) {
       sidebar.classList.toggle('open');
+
+      // 更新按钮状态
+      if (toggleBtn) {
+        if (sidebar.classList.contains('open')) {
+          toggleBtn.textContent = '✕';
+          toggleBtn.classList.add('sidebar-open');
+        } else {
+          toggleBtn.textContent = '☰';
+          toggleBtn.classList.remove('sidebar-open');
+        }
+      }
+
+      // 更新遮罩层
+      if (overlay) {
+        if (sidebar.classList.contains('open')) {
+          overlay.classList.add('show');
+        } else {
+          overlay.classList.remove('show');
+        }
+      }
     }
   }
 

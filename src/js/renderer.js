@@ -11,9 +11,15 @@ export class Renderer {
    */
   renderApp() {
     return `
-      <div class="sidebar">
+      <div class="sidebar" id="sidebar">
         ${this.renderSidebar()}
       </div>
+      
+      <button class="sidebar-toggle-btn" id="sidebarToggle" onclick="tierMaker.toggleSidebar()">
+        ☰
+      </button>
+      
+      <div class="sidebar-overlay" id="sidebarOverlay" onclick="tierMaker.toggleSidebar()"></div>
       
       <div class="main-content">
         ${this.renderMainContent()}
