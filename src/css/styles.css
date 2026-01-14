@@ -756,15 +756,55 @@ body {
   position: fixed;
   top: 20px;
   right: 20px;
-  padding: 12px 20px;
-  border-radius: 6px;
+  min-width: 320px;
+  max-width: 500px;
+  padding: 16px 48px 16px 56px;
+  border-radius: 8px;
   font-weight: 500;
-  font-size: 0.875rem;
+  font-size: 0.9375rem;
   z-index: 3000;
   opacity: 0;
   transform: translateX(100%);
   transition: all 0.3s ease;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+  border: 1px solid;
+}
+
+.export-message::before {
+  content: '';
+  position: absolute;
+  left: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 24px;
+  height: 24px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.export-message::after {
+  content: '✕';
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  opacity: 0.5;
+  transition: opacity 0.2s ease;
+  font-size: 1.25rem;
+  line-height: 1;
+}
+
+.export-message:hover::after {
+  opacity: 1;
 }
 
 .export-message.show {
@@ -773,13 +813,35 @@ body {
 }
 
 .export-message-success {
-  background: #10b981;
-  color: white;
+  background: #d1f4e0;
+  color: #2d5f3f;
+  border-color: #a8e6c1;
+}
+
+.export-message-success::before {
+  content: '✓';
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #2d5f3f;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .export-message-error {
-  background: #ef4444;
-  color: white;
+  background: #f8d7da;
+  color: #721c24;
+  border-color: #f5c6cb;
+}
+
+.export-message-error::before {
+  content: '⊘';
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #721c24;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 /* 响应式设计 */
@@ -1227,15 +1289,55 @@ body {
   position: fixed;
   top: 80px;
   right: 20px;
-  padding: 12px 20px;
-  border-radius: 6px;
+  min-width: 320px;
+  max-width: 500px;
+  padding: 16px 48px 16px 56px;
+  border-radius: 8px;
   font-weight: 500;
-  font-size: 0.875rem;
+  font-size: 0.9375rem;
   z-index: 5000;
   opacity: 0;
   transform: translateX(100%);
   transition: all 0.3s ease;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+  border: 1px solid;
+}
+
+.present-message::before {
+  content: '';
+  position: absolute;
+  left: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 24px;
+  height: 24px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.present-message::after {
+  content: '✕';
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  opacity: 0.5;
+  transition: opacity 0.2s ease;
+  font-size: 1.25rem;
+  line-height: 1;
+}
+
+.present-message:hover::after {
+  opacity: 1;
 }
 
 .present-message.show {
@@ -1244,18 +1346,51 @@ body {
 }
 
 .present-message-success {
-  background: #10b981;
-  color: white;
+  background: #d1f4e0;
+  color: #2d5f3f;
+  border-color: #a8e6c1;
+}
+
+.present-message-success::before {
+  content: '✓';
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #2d5f3f;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .present-message-error {
-  background: #ef4444;
-  color: white;
+  background: #f8d7da;
+  color: #721c24;
+  border-color: #f5c6cb;
+}
+
+.present-message-error::before {
+  content: '⊘';
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #721c24;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .present-message-info {
-  background: #3b82f6;
-  color: white;
+  background: #d1ecf1;
+  color: #0c5460;
+  border-color: #bee5eb;
+}
+
+.present-message-info::before {
+  content: 'ⓘ';
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #0c5460;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 /* 响应式设计 */
@@ -1394,15 +1529,55 @@ body {
   position: fixed;
   top: 20px;
   right: 20px;
-  padding: 12px 20px;
-  border-radius: 6px;
+  min-width: 320px;
+  max-width: 500px;
+  padding: 16px 48px 16px 56px;
+  border-radius: 8px;
   font-weight: 500;
-  font-size: 0.875rem;
+  font-size: 0.9375rem;
   z-index: 3000;
   opacity: 0;
   transform: translateX(100%);
   transition: all 0.3s ease;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+  border: 1px solid;
+}
+
+.storage-message::before {
+  content: '';
+  position: absolute;
+  left: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 24px;
+  height: 24px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.storage-message::after {
+  content: '✕';
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  opacity: 0.5;
+  transition: opacity 0.2s ease;
+  font-size: 1.25rem;
+  line-height: 1;
+}
+
+.storage-message:hover::after {
+  opacity: 1;
 }
 
 .storage-message.show {
@@ -1411,18 +1586,67 @@ body {
 }
 
 .storage-message-success {
-  background: #10b981;
-  color: white;
+  background: #d1f4e0;
+  color: #2d5f3f;
+  border-color: #a8e6c1;
+}
+
+.storage-message-success::before {
+  content: '✓';
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #2d5f3f;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .storage-message-error {
-  background: #ef4444;
-  color: white;
+  background: #f8d7da;
+  color: #721c24;
+  border-color: #f5c6cb;
+}
+
+.storage-message-error::before {
+  content: '⊘';
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #721c24;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .storage-message-info {
-  background: #3b82f6;
-  color: white;
+  background: #d1ecf1;
+  color: #0c5460;
+  border-color: #bee5eb;
+}
+
+.storage-message-info::before {
+  content: 'ⓘ';
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #0c5460;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.storage-message-warning {
+  background: #fff3cd;
+  color: #856404;
+  border-color: #ffeaa7;
+}
+
+.storage-message-warning::before {
+  content: '⚠';
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #856404;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 /* 存储信息样式 */
@@ -1449,15 +1673,55 @@ body {
   position: fixed;
   top: 20px;
   right: 20px;
-  padding: 12px 20px;
-  border-radius: 6px;
+  min-width: 320px;
+  max-width: 500px;
+  padding: 16px 48px 16px 56px;
+  border-radius: 8px;
   font-weight: 500;
-  font-size: 0.875rem;
+  font-size: 0.9375rem;
   z-index: 3000;
   opacity: 0;
   transform: translateX(100%);
   transition: all 0.3s ease;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+  border: 1px solid;
+}
+
+.reset-message::before {
+  content: '';
+  position: absolute;
+  left: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 24px;
+  height: 24px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.reset-message::after {
+  content: '✕';
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  opacity: 0.5;
+  transition: opacity 0.2s ease;
+  font-size: 1.25rem;
+  line-height: 1;
+}
+
+.reset-message:hover::after {
+  opacity: 1;
 }
 
 .reset-message.show {
@@ -1466,13 +1730,35 @@ body {
 }
 
 .reset-message-success {
-  background: #10b981;
-  color: white;
+  background: #d1f4e0;
+  color: #2d5f3f;
+  border-color: #a8e6c1;
+}
+
+.reset-message-success::before {
+  content: '✓';
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #2d5f3f;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .reset-message-info {
-  background: #3b82f6;
-  color: white;
+  background: #d1ecf1;
+  color: #0c5460;
+  border-color: #bee5eb;
+}
+
+.reset-message-info::before {
+  content: 'ⓘ';
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #0c5460;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 /* 重置确认对话框增强 */

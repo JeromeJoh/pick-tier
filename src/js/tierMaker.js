@@ -120,6 +120,21 @@ export class TierMaker {
     messageEl.className = `storage-message storage-message-${type}`;
     messageEl.textContent = message;
 
+    // 添加点击关闭功能
+    messageEl.addEventListener('click', (e) => {
+      // 检查是否点击了关闭按钮区域（右侧）
+      const rect = messageEl.getBoundingClientRect();
+      const clickX = e.clientX - rect.left;
+      if (clickX > rect.width - 40) {
+        messageEl.classList.remove('show');
+        setTimeout(() => {
+          if (messageEl.parentNode) {
+            messageEl.parentNode.removeChild(messageEl);
+          }
+        }, 300);
+      }
+    });
+
     document.body.appendChild(messageEl);
 
     setTimeout(() => messageEl.classList.add('show'), 100);
