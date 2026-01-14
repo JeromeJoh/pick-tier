@@ -398,6 +398,11 @@ export class TierMaker {
       }
     } else {
       targetContainer = document.getElementById('elementsContainer');
+      // 移除元素池的空状态提示
+      const emptyState = targetContainer?.querySelector('.empty-state');
+      if (emptyState) {
+        emptyState.remove();
+      }
     }
 
     if (!targetContainer) {
@@ -426,6 +431,13 @@ export class TierMaker {
         tierContent.innerHTML = '<div class="empty-state"><p>Drop elements here</p></div>';
       }
     });
+
+    // 检查元素池是否为空
+    const poolElements = this.elements.filter(el => !this.isElementInTier(el.id));
+    const elementsContainer = document.getElementById('elementsContainer');
+    if (elementsContainer && poolElements.length === 0 && !elementsContainer.querySelector('.empty-state')) {
+      elementsContainer.innerHTML = '<div class="empty-state"><h3>No elements yet</h3><p>Upload images to get started</p></div>';
+    }
 
     // 更新侧边栏统计
     this.updateSidebarStats();
