@@ -300,26 +300,7 @@ export class ExportManager {
    * @param {string} type 消息类型 ('success' | 'error')
    */
   showExportMessage(message, type = 'success') {
-    // 创建消息元素
-    const messageEl = document.createElement('div');
-    messageEl.className = `export-message export-message-${type}`;
-    messageEl.textContent = message;
-
-    // 添加到页面
-    document.body.appendChild(messageEl);
-
-    // 显示动画
-    setTimeout(() => messageEl.classList.add('show'), 100);
-
-    // 自动隐藏
-    setTimeout(() => {
-      messageEl.classList.remove('show');
-      setTimeout(() => {
-        if (messageEl.parentNode) {
-          messageEl.parentNode.removeChild(messageEl);
-        }
-      }, 300);
-    }, 3000);
+    this.tierMaker.toastManager.show(message, type, 'export-message', 3000);
   }
 
   /**

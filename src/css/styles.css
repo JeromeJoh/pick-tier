@@ -753,16 +753,13 @@ body {
 
 /* 导出消息样式 */
 .export-message {
-  position: fixed;
-  top: 20px;
-  right: 20px;
+  position: relative;
   min-width: 320px;
   max-width: 500px;
   padding: 16px 48px 16px 56px;
   border-radius: 8px;
   font-weight: 500;
   font-size: 0.9375rem;
-  z-index: 3000;
   opacity: 0;
   transform: translateX(100%);
   transition: all 0.3s ease;
@@ -1286,16 +1283,13 @@ body {
 
 /* 幻灯片消息提示 */
 .present-message {
-  position: fixed;
-  top: 80px;
-  right: 20px;
+  position: relative;
   min-width: 320px;
   max-width: 500px;
   padding: 16px 48px 16px 56px;
   border-radius: 8px;
   font-weight: 500;
   font-size: 0.9375rem;
-  z-index: 5000;
   opacity: 0;
   transform: translateX(100%);
   transition: all 0.3s ease;
@@ -1524,18 +1518,31 @@ body {
     display: none;
   }
 }
-/* 存储消息样式 */
-.storage-message {
+/* Toast容器 */
+.toast-container {
   position: fixed;
   top: 20px;
   right: 20px;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  pointer-events: none;
+}
+
+.toast-container > * {
+  pointer-events: auto;
+}
+
+/* 存储消息样式 */
+.storage-message {
+  position: relative;
   min-width: 320px;
   max-width: 500px;
   padding: 16px 48px 16px 56px;
   border-radius: 8px;
   font-weight: 500;
   font-size: 0.9375rem;
-  z-index: 3000;
   opacity: 0;
   transform: translateX(100%);
   transition: all 0.3s ease;
@@ -1670,16 +1677,13 @@ body {
 
 /* 重置消息样式 */
 .reset-message {
-  position: fixed;
-  top: 20px;
-  right: 20px;
+  position: relative;
   min-width: 320px;
   max-width: 500px;
   padding: 16px 48px 16px 56px;
   border-radius: 8px;
   font-weight: 500;
   font-size: 0.9375rem;
-  z-index: 3000;
   opacity: 0;
   transform: translateX(100%);
   transition: all 0.3s ease;

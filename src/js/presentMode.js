@@ -39,6 +39,9 @@ export class PresentMode {
     this.isActive = false;
     this.stopAutoAdvance();
 
+    // 解绑键盘事件
+    this.unbindKeyboardEvents();
+
     if (this.modal) {
       this.modal.remove();
       this.modal = null;
@@ -356,6 +359,9 @@ export class PresentMode {
    * 绑定键盘事件
    */
   bindKeyboardEvents() {
+    // 先解绑已存在的事件监听器，防止重复绑定
+    this.unbindKeyboardEvents();
+
     this.keyboardHandler = (e) => {
       if (!this.isActive) return;
 
@@ -412,22 +418,7 @@ export class PresentMode {
    * @param {string} type 消息类型
    */
   showMessage(message, type = 'info') {
-    const messageEl = document.createElement('div');
-    messageEl.className = `present-message present-message-${type}`;
-    messageEl.textContent = message;
-
-    document.body.appendChild(messageEl);
-
-    setTimeout(() => messageEl.classList.add('show'), 100);
-
-    setTimeout(() => {
-      messageEl.classList.remove('show');
-      setTimeout(() => {
-        if (messageEl.parentNode) {
-          messageEl.parentNode.removeChild(messageEl);
-        }
-      }, 300);
-    }, 3000);
+    this.tierMaker.toastManager.show(message, type, 'present-message', 3000);
   }
 
   /**

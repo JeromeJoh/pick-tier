@@ -7,11 +7,15 @@ import { Renderer } from './renderer.js';
 import { ExportManager } from './exportManager.js';
 import { PresentMode } from './presentMode.js';
 import { StorageManager } from './storageManager.js';
+import { ToastManager } from './toastManager.js';
 
 export class TierMaker {
   constructor() {
     // 初始化存储管理器
     this.storageManager = new StorageManager();
+
+    // 初始化Toast管理器
+    this.toastManager = new ToastManager();
 
     // 应用数据 - 先设置默认值
     this.elements = [];
@@ -116,37 +120,7 @@ export class TierMaker {
    * @param {string} type 消息类型
    */
   showMessage(message, type = 'info') {
-    const messageEl = document.createElement('div');
-    messageEl.className = `storage-message storage-message-${type}`;
-    messageEl.textContent = message;
-
-    // 添加点击关闭功能
-    messageEl.addEventListener('click', (e) => {
-      // 检查是否点击了关闭按钮区域（右侧）
-      const rect = messageEl.getBoundingClientRect();
-      const clickX = e.clientX - rect.left;
-      if (clickX > rect.width - 40) {
-        messageEl.classList.remove('show');
-        setTimeout(() => {
-          if (messageEl.parentNode) {
-            messageEl.parentNode.removeChild(messageEl);
-          }
-        }, 300);
-      }
-    });
-
-    document.body.appendChild(messageEl);
-
-    setTimeout(() => messageEl.classList.add('show'), 100);
-
-    setTimeout(() => {
-      messageEl.classList.remove('show');
-      setTimeout(() => {
-        if (messageEl.parentNode) {
-          messageEl.parentNode.removeChild(messageEl);
-        }
-      }, 300);
-    }, 4000);
+    this.toastManager.show(message, type, 'storage-message', 4000);
   }
 
   /**
@@ -714,22 +688,7 @@ export class TierMaker {
    * @param {string} message 消息内容
    */
   showResetMessage(message) {
-    const messageEl = document.createElement('div');
-    messageEl.className = 'reset-message reset-message-success';
-    messageEl.textContent = message;
-
-    document.body.appendChild(messageEl);
-
-    setTimeout(() => messageEl.classList.add('show'), 100);
-
-    setTimeout(() => {
-      messageEl.classList.remove('show');
-      setTimeout(() => {
-        if (messageEl.parentNode) {
-          messageEl.parentNode.removeChild(messageEl);
-        }
-      }, 300);
-    }, 3000);
+    this.toastManager.show(message, 'success', 'reset-message', 3000);
   }
 
   // 模态框相关方法代理
