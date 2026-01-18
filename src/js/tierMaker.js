@@ -805,7 +805,6 @@ export class TierMaker {
   toggleSidebar() {
     const sidebar = document.querySelector('.sidebar');
     const toggleBtn = document.getElementById('sidebarToggle');
-    const overlay = document.getElementById('sidebarOverlay');
 
     if (sidebar) {
       sidebar.classList.toggle('open');
@@ -813,20 +812,11 @@ export class TierMaker {
       // 更新按钮状态
       if (toggleBtn) {
         if (sidebar.classList.contains('open')) {
-          toggleBtn.textContent = '✕';
+          toggleBtn.textContent = 'Close';
           toggleBtn.classList.add('sidebar-open');
         } else {
-          toggleBtn.textContent = '☰';
+          toggleBtn.textContent = 'Menu';
           toggleBtn.classList.remove('sidebar-open');
-        }
-      }
-
-      // 更新遮罩层
-      if (overlay) {
-        if (sidebar.classList.contains('open')) {
-          overlay.classList.add('show');
-        } else {
-          overlay.classList.remove('show');
         }
       }
     }

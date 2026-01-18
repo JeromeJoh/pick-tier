@@ -16,10 +16,8 @@ export class Renderer {
       </div>
       
       <button class="sidebar-toggle-btn" id="sidebarToggle" onclick="tierMaker.toggleSidebar()">
-        ☰
+        Menu
       </button>
-      
-      <div class="sidebar-overlay" id="sidebarOverlay" onclick="tierMaker.toggleSidebar()"></div>
       
       <div class="main-content">
         ${this.renderMainContent()}
@@ -30,7 +28,7 @@ export class Renderer {
       <div class="drag-indicator" id="dragIndicator"></div>
       
       <button class="mobile-menu-btn" onclick="tierMaker.toggleSidebar()" style="display: none;">
-        ☰
+        Menu
       </button>
     `;
   }
@@ -42,24 +40,24 @@ export class Renderer {
   renderSidebar() {
     return `
       <div class="sidebar-header">
-        <h1>🏆 Pick Tier</h1>
+        <h1>Pick Tier</h1>
       </div>
       
       <nav class="sidebar-nav">
         <div class="nav-section">
           <h3 class="nav-section-title">Actions</h3>
           <button class="nav-item" onclick="tierMaker.handleUploadClick()">
-            📁 Upload Images
+            Upload Images
           </button>
           <button class="nav-item" onclick="tierMaker.openConfigModal()">
-            ⚙️ Configure Tiers
+            Configure Tiers
           </button>
           <button class="nav-item" onclick="tierMaker.startPresentMode()">
-            🎬 Present Mode
+            Present Mode
           </button>
           <div class="export-button-wrapper">
             <button class="nav-item" onclick="tierMaker.toggleExportOptions(event)">
-              📸 Export Image
+              Export Image
             </button>
             <div class="export-options" id="exportOptions">
               <button class="export-option" onclick="tierMaker.showExportPreview('png')">
@@ -77,26 +75,26 @@ export class Renderer {
             </div>
           </div>
           <button class="nav-item" onclick="tierMaker.resetAllRankings()">
-            🔄 Reset Rankings
+            Reset Rankings
           </button>
           <button class="nav-item" onclick="tierMaker.openBulkActionsModal()">
-            📋 Bulk Actions
+            Bulk Actions
           </button>
           <button class="nav-item" onclick="tierMaker.clearAll()">
-            🗑️ Clear All
+            Clear All
           </button>
         </div>
         
         <div class="nav-section">
           <h3 class="nav-section-title">Data Management</h3>
           <button class="nav-item" onclick="tierMaker.exportDataBackup()">
-            💾 Export Backup
+            Export Backup
           </button>
           <button class="nav-item" onclick="tierMaker.importDataBackup()">
-            📂 Import Backup
+            Import Backup
           </button>
           <button class="nav-item" onclick="tierMaker.storageManager.clearData(); tierMaker.showMessage('Session storage cleared', 'info')">
-            🧹 Clear Session
+            Clear Session
           </button>
         </div>
         
@@ -146,17 +144,17 @@ export class Renderer {
       <div class="controls">
         <input type="file" id="imageInput" class="file-input" accept="image/*" multiple>
         <button class="btn btn-primary" onclick="tierMaker.handleUploadClick()">
-          📁 Upload Images
+          Upload Images
         </button>
         <button class="btn" onclick="tierMaker.openConfigModal()">
-          ⚙️ Configure Tiers
+          Configure Tiers
         </button>
         <button class="btn" onclick="tierMaker.startPresentMode()">
-          🎬 Present Mode
+          Present Mode
         </button>
         <div class="export-button-wrapper">
           <button class="btn btn-export" onclick="tierMaker.toggleExportOptions(event)">
-            📸 Export Image
+            Export Image
           </button>
           <div class="export-options" id="exportOptionsMain">
             <button class="export-option" onclick="tierMaker.showExportPreview('png')">
@@ -174,16 +172,16 @@ export class Renderer {
           </div>
         </div>
         <button class="btn" onclick="tierMaker.exportDataBackup()">
-          💾 Export Backup
+          Export Backup
         </button>
         <button class="btn" onclick="tierMaker.importDataBackup()">
-          📂 Import Backup
+          Import Backup
         </button>
         <button class="btn btn-warning" onclick="tierMaker.resetAllRankings()">
-          🔄 Reset Rankings
+          Reset Rankings
         </button>
         <button class="btn btn-danger" onclick="tierMaker.clearAll()">
-          🗑️ Clear All
+          Clear All
         </button>
       </div>
       
