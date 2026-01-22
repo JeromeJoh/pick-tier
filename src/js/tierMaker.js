@@ -191,7 +191,7 @@ export class TierMaker {
 
       // 元素池拖拽事件
       elementsContainer.addEventListener('dragover', (e) => {
-        console.log(this.dragHandler.getDraggedElement())
+        console.log('outer dragover', this.dragHandler.getDraggedElement())
         if (elementsContainer && this.dragHandler.getDraggedElement()) {
           Object.defineProperty(e, 'currentTarget', {
             value: elementsContainer,
@@ -240,6 +240,7 @@ export class TierMaker {
    * 处理上传按钮点击
    */
   handleUploadClick() {
+    console.log('Upload button clicked');
     const imageInput = document.getElementById('imageInput');
     if (imageInput) {
       imageInput.click();
@@ -813,10 +814,10 @@ export class TierMaker {
       // 更新按钮状态
       if (toggleBtn) {
         if (sidebar.classList.contains('open')) {
-          toggleBtn.textContent = 'Close';
+          toggleBtn.innerHTML = '<i class="ph ph-text-outdent"></i>';
           toggleBtn.classList.add('sidebar-open');
         } else {
-          toggleBtn.textContent = 'Menu';
+          toggleBtn.innerHTML = '<i class="ph ph-text-indent"></i>';
           toggleBtn.classList.remove('sidebar-open');
         }
       }

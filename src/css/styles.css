@@ -557,10 +557,33 @@ body {
 }
 
 .elements-pool h3 {
-  margin: 0 0 16px 0;
   font-size: 1.25rem;
   font-weight: 600;
   color: #111827;
+}
+
+.elements-pool-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.elements-pool-header button {
+  width: 2.5rem;
+  height: 2.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  font-size: 1.8rem;
+  cursor: pointer;
+  background-color: transparent;
+  border: none;
+  transition: all 300ms;
+}
+
+.elements-pool-header button:hover {
+  background-color: var(--color-border);
 }
 
 .elements-container {

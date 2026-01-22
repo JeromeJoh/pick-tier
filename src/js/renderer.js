@@ -17,7 +17,7 @@ export class Renderer {
       
       <div class="main-content">
         <button class="sidebar-toggle-btn" id="sidebarToggle" onclick="tierMaker.toggleSidebar()">
-          Menu
+          <i class="ph ph-text-indent"></i>
         </button>
         ${this.renderMainContent()}
       </div>
@@ -43,7 +43,13 @@ export class Renderer {
         <h1>Pick Tier</h1>
       </div>
       <div class="elements-pool">
-        <h3>Elements Pool</h3>
+        <input type="file" id="imageInput" class="file-input" accept="image/*" multiple>
+        <div class="elements-pool-header">
+          <h3>Elements Pool</h3>
+          <button title="Upload Images" onclick="tierMaker.handleUploadClick()">
+            <i class="ph ph-plus-circle"></i>
+          </button>
+        </div>
         <div class="elements-container" id="elementsContainer">
           ${this.renderPoolElements()}
         </div>
@@ -52,9 +58,6 @@ export class Renderer {
       <nav class="sidebar-nav">
         <div class="nav-section">
           <h3 class="nav-section-title">Actions</h3>
-          <button class="nav-item" onclick="tierMaker.handleUploadClick()">
-            Upload Images
-          </button>
           <button class="nav-item" onclick="tierMaker.openConfigModal()">
             Configure Tiers
           </button>
@@ -143,7 +146,9 @@ export class Renderer {
   renderMainContent() {
     return `
       <div class="content-header">
-        <h1>Instructions</h1>
+        <h1>Instructions  <i class="ph ph-smiley"></i>
+    <i class="ph-fill ph-heart" style="color: hotpink"></i>
+    <i class="ph ph-cube"></i></h1>
         <p>Tier Ranking Tool | Drag & drop elements to rank them in different tiers</p>
       </div>
       <div class="tier-container">
