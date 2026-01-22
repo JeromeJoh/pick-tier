@@ -15,11 +15,10 @@ export class Renderer {
         ${this.renderSidebar()}
       </div>
       
-      <button class="sidebar-toggle-btn" id="sidebarToggle" onclick="tierMaker.toggleSidebar()">
-        Menu
-      </button>
-      
       <div class="main-content">
+        <button class="sidebar-toggle-btn" id="sidebarToggle" onclick="tierMaker.toggleSidebar()">
+          Menu
+        </button>
         ${this.renderMainContent()}
       </div>
       
@@ -40,6 +39,7 @@ export class Renderer {
   renderSidebar() {
     return `
       <div class="sidebar-header">
+        <img src="logo.svg" alt="Pick Tier Logo" class="sidebar-logo">
         <h1>Pick Tier</h1>
       </div>
       
@@ -137,8 +137,8 @@ export class Renderer {
   renderMainContent() {
     return `
       <div class="content-header">
-        <h1>Tier Ranking</h1>
-        <p>Drag and drop elements to rank them in different tiers</p>
+        <h1>Instructions</h1>
+        <p>Tier Ranking Tool | Drag & drop elements to rank them in different tiers</p>
       </div>
       
       <div class="controls">
@@ -218,7 +218,6 @@ export class Renderer {
       const element = this.tierMaker.elements.find(el => String(el.id) === String(elementId));
       return element ? this.renderElement(element) : '';
     }).join('')}
-          ${tier.elements.length === 0 ? '<div class="empty-state"><p>Drop elements here</p></div>' : ''}
         </div>
       </div>
     `).join('');

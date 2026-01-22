@@ -55,6 +55,7 @@ export class TierMaker {
 
     // 显示存储状态信息
     this.showStorageStatus();
+
   }
 
   /**
