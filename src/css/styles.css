@@ -149,7 +149,6 @@ body {
 .sidebar {
   width: 280px;
   background: var(--color-background);
-  border-right: 1px solid var(--color-border);
   padding: var(--spacing-lg) 0;
   position: fixed;
   height: 100vh;
@@ -173,7 +172,6 @@ body {
   height: 100vh;
   z-index: 101;
   border: none;
-  border-right: 1px solid var(--color-border);
   cursor: pointer;
   font-size: var(--font-size-sm);
   font-weight: 500;
@@ -185,7 +183,7 @@ body {
   align-items: center;
   justify-content: center;
   background-color: var(--color-background);
-  border: 0.5px solid gainsboro;
+  border-inline: 0.5px solid gainsboro;
   transition: all 0.3s;
 }
 
@@ -285,7 +283,6 @@ body {
   position: relative;
   flex: 1;
   margin-left: 0;
-  margin-top: 48px; /* 为toggle按钮留出空间 */
   padding: var(--spacing-xl) var(--spacing-xl) var(--spacing-2xl)
     calc(var(--spacing-xl) + 48px);
   max-width: 100vw;
@@ -554,9 +551,7 @@ body {
 
 /* 元素池 */
 .elements-pool {
-  background: white;
-  border-radius: 8px;
-  border: 1px solid #e5e7eb;
+  border-block: 0.5px solid gainsboro;
   padding: 24px;
   min-height: 200px;
 }
@@ -574,8 +569,8 @@ body {
   gap: 12px;
   min-height: 150px;
   padding: 16px;
-  border: 2px dashed #d1d5db;
-  border-radius: 8px;
+  border: 1px dashed #d1d5db;
+  border-radius: 4px;
   transition: all 0.2s ease;
   background: #fafafa;
   position: relative;
@@ -627,7 +622,6 @@ body {
 .element {
   width: 80px;
   height: 80px;
-  border-radius: 6px;
   cursor: grab;
   transition: all 0.2s ease;
   position: relative;
@@ -653,7 +647,6 @@ body {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  border-radius: 6px;
 }
 
 .element-info {
@@ -1066,7 +1059,6 @@ body {
   .main-content {
     margin-left: 0;
     max-width: 100vw;
-    padding: 24px;
   }
 
   .mobile-menu-btn {

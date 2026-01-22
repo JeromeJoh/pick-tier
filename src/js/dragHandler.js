@@ -418,6 +418,7 @@ export class DragHandler {
    */
   handleDragOver(event) {
     event.preventDefault();
+    console.log(23423423432, event.currentTarget)
     event.dataTransfer.dropEffect = 'move';
     event.currentTarget.classList.add('drag-over');
 

@@ -42,6 +42,12 @@ export class Renderer {
         <img src="logo.svg" alt="Pick Tier Logo" class="sidebar-logo">
         <h1>Pick Tier</h1>
       </div>
+      <div class="elements-pool">
+        <h3>Elements Pool</h3>
+        <div class="elements-container" id="elementsContainer">
+          ${this.renderPoolElements()}
+        </div>
+      </div>
       
       <nav class="sidebar-nav">
         <div class="nav-section">
@@ -140,62 +146,11 @@ export class Renderer {
         <h1>Instructions</h1>
         <p>Tier Ranking Tool | Drag & drop elements to rank them in different tiers</p>
       </div>
-      
-      <div class="controls">
-        <input type="file" id="imageInput" class="file-input" accept="image/*" multiple>
-        <button class="btn btn-primary" onclick="tierMaker.handleUploadClick()">
-          Upload Images
-        </button>
-        <button class="btn" onclick="tierMaker.openConfigModal()">
-          Configure Tiers
-        </button>
-        <button class="btn" onclick="tierMaker.startPresentMode()">
-          Present Mode
-        </button>
-        <div class="export-button-wrapper">
-          <button class="btn btn-export" onclick="tierMaker.toggleExportOptions(event)">
-            Export Image
-          </button>
-          <div class="export-options" id="exportOptionsMain">
-            <button class="export-option" onclick="tierMaker.showExportPreview('png')">
-              Preview PNG
-            </button>
-            <button class="export-option" onclick="tierMaker.showExportPreview('jpeg')">
-              Preview JPEG
-            </button>
-            <button class="export-option" onclick="tierMaker.exportTierImage('png')">
-              Export PNG
-            </button>
-            <button class="export-option" onclick="tierMaker.exportTierImage('jpeg')">
-              Export JPEG
-            </button>
-          </div>
-        </div>
-        <button class="btn" onclick="tierMaker.exportDataBackup()">
-          Export Backup
-        </button>
-        <button class="btn" onclick="tierMaker.importDataBackup()">
-          Import Backup
-        </button>
-        <button class="btn btn-warning" onclick="tierMaker.resetAllRankings()">
-          Reset Rankings
-        </button>
-        <button class="btn btn-danger" onclick="tierMaker.clearAll()">
-          Clear All
-        </button>
-      </div>
-      
       <div class="tier-container">
         <h2 class="tier-section-title">Ranking Tiers</h2>
         ${this.renderTiers()}
       </div>
-      
-      <div class="elements-pool">
-        <h3>Elements Pool</h3>
-        <div class="elements-container" id="elementsContainer">
-          ${this.renderPoolElements()}
-        </div>
-      </div>
+      <footer class="app-footer">Powered By Pick Tier</footer>
     `;
   }
 
