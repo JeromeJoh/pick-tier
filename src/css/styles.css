@@ -173,7 +173,7 @@ body {
   z-index: 101;
   border: none;
   cursor: pointer;
-  font-size: var(--font-size-sm);
+  font-size: var(--font-size-xl);
   font-weight: 500;
   box-shadow: var(--shadow-sm);
   transition: all var(--transition-base);
@@ -223,10 +223,10 @@ body {
 
 .nav-section-title {
   font-size: var(--font-size-xs);
-  font-weight: 600;
+  font-weight: 300;
   color: var(--color-text-muted);
   text-transform: uppercase;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.2em;
   padding: 0 var(--spacing-lg) var(--spacing-md);
   margin: 0;
 }

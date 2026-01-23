@@ -146,7 +146,7 @@ export class TierMaker {
 
     // 使用事件委托绑定拖拽事件到主容器
     const mainContent = document.querySelector('.main-content');
-    const elementsContainer = document.querySelector('.elements-container');
+    const sidebar = document.querySelector('.sidebar');
     if (mainContent) {
       // 分级区域拖拽事件
       mainContent.addEventListener('dragover', (e) => {
@@ -190,8 +190,8 @@ export class TierMaker {
       });
 
       // 元素池拖拽事件
-      elementsContainer.addEventListener('dragover', (e) => {
-        console.log('outer dragover', this.dragHandler.getDraggedElement())
+      sidebar.addEventListener('dragover', (e) => {
+        const elementsContainer = document.querySelector('.elements-container');
         if (elementsContainer && this.dragHandler.getDraggedElement()) {
           Object.defineProperty(e, 'currentTarget', {
             value: elementsContainer,
@@ -201,8 +201,9 @@ export class TierMaker {
         }
       });
 
-      elementsContainer.addEventListener('dragleave', (e) => {
-        console.log('leave', this.dragHandler.getDraggedElement())
+      sidebar.addEventListener('dragleave', (e) => {
+        const elementsContainer = document.querySelector('.elements-container');
+
         if (elementsContainer && this.dragHandler.getDraggedElement()) {
           Object.defineProperty(e, 'currentTarget', {
             value: elementsContainer,
@@ -212,7 +213,8 @@ export class TierMaker {
         }
       });
 
-      elementsContainer.addEventListener('drop', (e) => {
+      sidebar.addEventListener('drop', (e) => {
+        const elementsContainer = document.querySelector('.elements-container');
         if (elementsContainer && this.dragHandler.getDraggedElement()) {
           e.preventDefault();
           const draggedElementId = this.dragHandler.getDraggedElement();
