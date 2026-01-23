@@ -113,7 +113,7 @@ export class ModalManager {
       this.currentEditingElement.description = description;
       this.tierMaker.updateDisplay();
       // 触发自动保存
-      this.tierMaker.autoSave();
+      // this.tierMaker.autoSave();
     }
 
     this.closeElementModal();

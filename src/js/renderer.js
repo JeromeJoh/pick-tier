@@ -16,6 +16,7 @@ export class Renderer {
       </div>
       
       <div class="main-content">
+      <input type="file" id="imageInput" class="file-input" accept="image/*" multiple>
         <button class="sidebar-toggle-btn" id="sidebarToggle" onclick="tierMaker.toggleSidebar()">
           <i class="ph ph-text-indent"></i>
         </button>
@@ -43,7 +44,6 @@ export class Renderer {
         <h1>Pick Tier</h1>
       </div>
       <div class="elements-pool">
-        <input type="file" id="imageInput" class="file-input" accept="image/*" multiple>
         <div class="elements-pool-header">
           <h3>Elements Pool</h3>
           <button title="Upload Images" onclick="tierMaker.handleUploadClick()">

@@ -253,6 +253,7 @@ export class TierMaker {
    */
   handleFileUpload(event) {
     const files = Array.from(event.target.files);
+    console.log('Files uploaded:', files);
 
     files.forEach(file => {
       if (isImageFile(file)) {
