@@ -509,7 +509,6 @@ body {
 .tier-content {
   flex: 1;
   background: #ffffff;
-  padding: 12px;
   display: flex;
   flex-wrap: wrap;
   gap: 12px;
@@ -654,7 +653,6 @@ body {
 }
 
 .element:hover {
-  transform: translateY(-2px);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 

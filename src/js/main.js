@@ -11,3 +11,12 @@ window.presentMode = tierMaker.presentMode;
 
 // 应用加载完成提示
 console.log('🏆 Pick Tier application loaded successfully!');
+
+// TODO: element size 作为基本单位设置其他宽高
+// TODO: 引用 dom-to-image 库
+// TODO: 增加使用说明在 tiers 上方
+// TODO: 修改 tier 背景颜色的方式，使用右键弹出 color picker
+// TODO: 更换 iconfont
+// TODO: 所有的 modal 框样式
+// TODO: 重点 present mode 样式优化
+// TODO: 配置缓存导入是否有必要保留
