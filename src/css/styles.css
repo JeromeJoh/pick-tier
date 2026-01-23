@@ -232,7 +232,6 @@ body {
 }
 
 .nav-item {
-  display: block;
   padding: var(--spacing-md) var(--spacing-lg);
   color: var(--color-text-secondary);
   text-decoration: none;
@@ -246,6 +245,13 @@ body {
   cursor: pointer;
   border-radius: 0;
   position: relative;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.nav-item i {
+  font-size: 1.2rem;
 }
 
 .nav-item::before {

@@ -59,14 +59,17 @@ export class Renderer {
         <div class="nav-section">
           <h3 class="nav-section-title">Actions</h3>
           <button class="nav-item" onclick="tierMaker.openConfigModal()">
-            Configure Tiers
+            <i class="ph ph-text-indent"></i>
+            <span>Configure Tiers</span>
           </button>
           <button class="nav-item" onclick="tierMaker.startPresentMode()">
-            Present Mode
+            <i class="ph ph-presentation"></i>
+            <span>Present Mode</span>
           </button>
           <div class="export-button-wrapper">
             <button class="nav-item" onclick="tierMaker.toggleExportOptions(event)">
-              Export Image
+              <i class="ph ph-arrow-square-out"></i>
+              <span>Export Image</span>
             </button>
             <div class="export-options" id="exportOptions">
               <button class="export-option" onclick="tierMaker.showExportPreview('png')">
@@ -84,13 +87,15 @@ export class Renderer {
             </div>
           </div>
           <button class="nav-item" onclick="tierMaker.resetAllRankings()">
-            Reset Rankings
+            <i class="ph ph-arrow-clockwise"></i>
+            <span>Reset Rankings</span>
           </button>
           <button class="nav-item" onclick="tierMaker.openBulkActionsModal()">
             Bulk Actions
           </button>
           <button class="nav-item" onclick="tierMaker.clearAll()">
-            Clear All
+            <i class="ph ph-broom"></i>
+            <span>Clear All</span>
           </button>
         </div>
         
