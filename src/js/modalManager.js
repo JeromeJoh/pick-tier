@@ -113,7 +113,7 @@ export class ModalManager {
       this.currentEditingElement.description = description;
       this.tierMaker.updateDisplay();
       // 触发自动保存
-      // this.tierMaker.autoSave();
+      this.tierMaker.autoSave();
     }
 
     this.closeElementModal();
@@ -175,7 +175,7 @@ export class ModalManager {
           </div>
           <div class="modal-actions">
             <button class="btn btn-warning" onclick="this.closest('.modal').dispatchEvent(new CustomEvent('confirm'))">
-              🔄 Reset Rankings
+              Reset Rankings
             </button>
             <button class="btn" onclick="this.closest('.modal').dispatchEvent(new CustomEvent('cancel'))">
               Cancel

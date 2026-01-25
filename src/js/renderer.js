@@ -90,9 +90,11 @@ export class Renderer {
             <i class="ph ph-arrow-clockwise"></i>
             <span>Reset Rankings</span>
           </button>
+          <!--
           <button class="nav-item" onclick="tierMaker.openBulkActionsModal()">
             Bulk Actions
           </button>
+          -->
           <button class="nav-item" onclick="tierMaker.clearAll()">
             <i class="ph ph-broom"></i>
             <span>Clear All</span>
@@ -110,38 +112,10 @@ export class Renderer {
           <button class="nav-item" onclick="tierMaker.storageManager.clearData(); tierMaker.showMessage('Session storage cleared', 'info')">
             Clear Session
           </button>
-        </div>
-        
-        <div class="nav-section">
-          <h3 class="nav-section-title">Tiers</h3>
-          ${this.renderTierNavigation()}
-        </div>
-        
-        <div class="nav-section">
-          <h3 class="nav-section-title">Statistics</h3>
-          <div class="nav-item" style="cursor: default;">
-            Elements: ${this.tierMaker.elements.length}
-          </div>
-          <div class="nav-item" style="cursor: default;">
-            Tiers: ${this.tierMaker.tiers.length}
-          </div>
           ${this.renderStorageInfo()}
         </div>
       </nav>
     `;
-  }
-
-  /**
-   * 渲染分级导航
-   * @returns {string} HTML字符串
-   */
-  renderTierNavigation() {
-    return this.tierMaker.tiers.map(tier => `
-      <div class="nav-item" style="display: flex; align-items: center; gap: 8px;">
-        <div style="width: 16px; height: 16px; background: ${tier.color}; border-radius: 3px;"></div>
-        <span>${tier.label} (${tier.elements.length})</span>
-      </div>
-    `).join('');
   }
 
   /**
@@ -157,7 +131,17 @@ export class Renderer {
         <p>Tier Ranking Tool | Drag & drop elements to rank them in different tiers</p>
       </div>
       <div class="tier-container">
-        <h2 class="tier-section-title">Ranking Tiers</h2>
+        <h2 class="tier-section-title">
+          <input id="sectionTitle" type="text" value="Your Tiers">
+          <div class="tier-stats">
+            <div>
+              Tiers: ${this.tierMaker.tiers.length}
+            </div>
+            <div>
+              Elements: ${this.tierMaker.elements.length}
+            </div>
+        </div>
+        </h2>
         ${this.renderTiers()}
       </div>
       <footer class="app-footer">Powered By Pick Tier</footer>
@@ -217,10 +201,10 @@ export class Renderer {
         <div class="element-info">${element.name}</div>
         <div class="element-actions">
           <button class="element-action edit-btn" onclick="tierMaker.editElement('${element.id}')" title="Edit">
-            ✏️
+            <i class="ph ph-pencil-simple-line"></i>
           </button>
           <button class="element-action delete-btn" onclick="tierMaker.deleteElement('${element.id}')" title="Delete">
-            ❌
+            <i class="ph ph-trash-simple"></i>
           </button>
         </div>
       </div>
@@ -339,7 +323,7 @@ export class Renderer {
     const storageInfo = this.tierMaker.storageManager.getStorageInfo();
     if (!storageInfo) {
       return `
-        <div class="nav-item storage-info" style="cursor: default; font-size: 0.75rem; color: #9ca3af;">
+        <div class="nav-item storage-info" style="cursor: default; font-size: 0.75rem; color: #9ca3af;pointer-events: none;">
           No saved data
         </div>
       `;
@@ -347,7 +331,7 @@ export class Renderer {
 
     return `
       <div class="nav-item storage-info" style="cursor: default; font-size: 0.75rem; color: #9ca3af;">
-        💾 Last saved: ${new Date(storageInfo.timestamp).toLocaleTimeString()}
+         <i class="ph ph-floppy-disk"></i>Last saved: ${new Date(storageInfo.timestamp).toLocaleTimeString()}
       </div>
     `;
   }

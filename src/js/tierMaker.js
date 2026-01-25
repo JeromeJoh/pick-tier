@@ -362,9 +362,9 @@ export class TierMaker {
         }).join('');
 
         // 添加空状态提示
-        if (tier.elements.length === 0) {
-          tierContent.innerHTML = '<div class="empty-state"><p>Drop elements here</p></div>';
-        }
+        // if (tier.elements.length === 0) {
+        //   tierContent.innerHTML = '<div class="empty-state"><p>Drop elements here</p></div>';
+        // }
       }
     });
 
@@ -432,9 +432,9 @@ export class TierMaker {
     // 检查源容器是否为空，如果为空则添加空状态提示
     this.tiers.forEach(tier => {
       const tierContent = document.querySelector(`[data-tier-id="${tier.id}"]`);
-      if (tierContent && tier.elements.length === 0 && !tierContent.querySelector('.empty-state')) {
-        tierContent.innerHTML = '<div class="empty-state"><p>Drop elements here</p></div>';
-      }
+      // if (tierContent && tier.elements.length === 0 && !tierContent.querySelector('.empty-state')) {
+      //   tierContent.innerHTML = '<div class="empty-state"><p>Drop elements here</p></div>';
+      // }
     });
 
     // 检查元素池是否为空

@@ -460,10 +460,39 @@ body {
 }
 
 .tier-section-title {
-  font-size: 1.25rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+}
+
+.tier-stats {
+  display: flex;
+  gap: 2em;
+  color: var(--color-text-secondary);
+  text-decoration: none;
+  font-size: var(--font-size-sm);
+  font-weight: 500;
+  padding-right: 1em;
+}
+
+.tier-stats div {
+  flex-wrap: nowrap;
+}
+
+.tier-section-title input {
+  width: fit-content;
+  font-size: 1.8rem;
   font-weight: 600;
   color: #111827;
-  margin: 0 0 16px 0;
+  margin-bottom: 0.5rem;
+  padding: 1rem 0.5rem;
+  background-color: transparent;
+  outline: none;
+  border: none;
+}
+
+.tier-section-title input:focus {
+  border-bottom: solid 0.5px var(--color-divider);
 }
 
 .tier-row {
@@ -726,15 +755,8 @@ body {
   -khtml-user-drag: none;
   -moz-user-drag: none;
   -o-user-drag: none;
-  user-drag: none;
-}
-
-.edit-btn {
-  background: #059669;
-}
-
-.delete-btn {
-  background: #dc2626;
+  -webkit-user-drag: none;
+  background-color: black;
 }
 
 .element-action:hover {
