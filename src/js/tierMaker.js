@@ -509,6 +509,29 @@ export class TierMaker {
   }
 
   /**
+ * 编辑分级颜色
+ * @param {string} tierId 分级ID
+ */
+  editTierColor(e, tierId) {
+    console.log('Edit tier color:', tierId, e);
+    e.preventDefault();
+    const labelElement = document.getElementById(`tierLabel_${tierId}`);
+    const tier = this.tiers.find(t => t.id === tierId);
+
+    if (!tier || !labelElement || labelElement.classList.contains('editing')) return;
+
+    labelElement.classList.add('editing');
+    const currentLabel = tier.label;
+
+    labelElement.innerHTML = `<input type="text" value="${currentLabel}" onblur="tierMaker.saveTierLabel('${tierId}', this.value)" onkeypress="if(event.key==='Enter') this.blur()">`;
+    const input = labelElement.querySelector('input');
+    if (input) {
+      input.focus();
+      input.select();
+    }
+  }
+
+  /**
    * 保存分级标签
    * @param {string} tierId 分级ID
    * @param {string} newLabel 新标签

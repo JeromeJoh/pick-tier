@@ -129,7 +129,7 @@ export class Renderer {
         <div class="steps-list">
           <p><em>1.</em> Upload images using the "+" button in the Elements Pool.</p>
           <p><em>2.</em> Drag and drop elements to rank them in different tiers.</p>
-          <p><em>3.</em> Use the sidebar to configure tiers, present, export, or reset rankings.</p>
+          <p><em>3.</em> Use the sidebar to configure tiers, present, or reset rankings.</p>
           <p><em>4.</em> Export your ranked tiers as an image when ready.</p>
         </div>
       </div>
@@ -160,6 +160,7 @@ export class Renderer {
       <div class="tier-row">
         <div class="tier-label" style="background-color: ${tier.color}" 
              onclick="tierMaker.editTierLabel('${tier.id}')" 
+             oncontextmenu="tierMaker.editTierColor(event,'${tier.id}')" 
              id="tierLabel_${tier.id}"
              data-tooltip="Click to edit tier name">
           ${tier.label}
