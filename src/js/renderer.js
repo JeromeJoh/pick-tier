@@ -125,10 +125,13 @@ export class Renderer {
   renderMainContent() {
     return `
       <div class="content-header">
-        <h1>Instructions  <i class="ph ph-smiley"></i>
-    <i class="ph-fill ph-heart" style="color: hotpink"></i>
-    <i class="ph ph-cube"></i></h1>
-        <p>Tier Ranking Tool | Drag & drop elements to rank them in different tiers</p>
+        <h1>How to Use Pick Tier</h1>
+        <div class="steps-list">
+          <p><em>1.</em> Upload images using the "+" button in the Elements Pool.</p>
+          <p><em>2.</em> Drag and drop elements to rank them in different tiers.</p>
+          <p><em>3.</em> Use the sidebar to configure tiers, present, export, or reset rankings.</p>
+          <p><em>4.</em> Export your ranked tiers as an image when ready.</p>
+        </div>
       </div>
       <div class="tier-container">
         <h2 class="tier-section-title">

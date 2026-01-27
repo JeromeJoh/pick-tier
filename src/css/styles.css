@@ -336,6 +336,32 @@ body {
   margin: 0;
 }
 
+.steps-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.steps-list p {
+  position: relative;
+  font-size: 1rem;
+  padding-left: 1rem;
+}
+
+.steps-list em {
+  position: absolute;
+  left: -0.4rem;
+  top: -0.25rem;
+  font-size: 1.2rem;
+  font-style: normal;
+}
+
+@media (max-width: 640px) {
+  .steps-list {
+    grid-template-columns: 1fr;
+  }
+}
+
 /* 控制面板 */
 .controls {
   display: flex;
