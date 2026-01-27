@@ -149,7 +149,7 @@ body {
 .sidebar {
   width: 280px;
   background: var(--color-background);
-  padding: var(--spacing-lg) 0;
+  padding-top: var(--spacing-lg);
   position: fixed;
   height: 100vh;
   overflow-y: auto;
@@ -214,11 +214,11 @@ body {
 }
 
 .sidebar-nav {
-  padding: var(--spacing-lg) 0;
+  padding-top: var(--spacing-lg);
 }
 
-.nav-section {
-  margin-bottom: var(--spacing-xl);
+.nav-section:not(:last-child) {
+  margin-bottom: var(--spacing-md);
 }
 
 .nav-section-title {
@@ -227,7 +227,7 @@ body {
   color: var(--color-text-muted);
   text-transform: uppercase;
   letter-spacing: 0.2em;
-  padding: 0 var(--spacing-lg) var(--spacing-md);
+  padding: 0 var(--spacing-lg) var(--spacing-sm);
   margin: 0;
 }
 
@@ -645,7 +645,7 @@ body {
 }
 
 .elements-pool-header button:hover {
-  background-color: var(--color-border);
+  background-color: var(--color-primary);
 }
 
 .elements-container {

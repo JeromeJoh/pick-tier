@@ -68,7 +68,7 @@ export class Renderer {
           </button>
           <div class="export-button-wrapper">
             <button class="nav-item" onclick="tierMaker.toggleExportOptions(event)">
-              <i class="ph ph-arrow-square-out"></i>
+              <i class="ph ph-image-square"></i>
               <span>Export Image</span>
             </button>
             <div class="export-options" id="exportOptions">
@@ -104,12 +104,15 @@ export class Renderer {
         <div class="nav-section">
           <h3 class="nav-section-title">Data Management</h3>
           <button class="nav-item" onclick="tierMaker.exportDataBackup()">
+            <i class="ph ph-arrow-square-out"></i>
             Export Backup
           </button>
           <button class="nav-item" onclick="tierMaker.importDataBackup()">
+            <i class="ph ph-arrow-square-in"></i>
             Import Backup
           </button>
           <button class="nav-item" onclick="tierMaker.storageManager.clearData(); tierMaker.showMessage('Session storage cleared', 'info')">
+            <i class="ph ph-x"></i>
             Clear Session
           </button>
           ${this.renderStorageInfo()}
