@@ -130,6 +130,12 @@
   background: var(--color-divider);
 }
 
+button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
 body {
   font-family: var(--font-family-base);
   background: var(--color-background);
@@ -451,15 +457,19 @@ body {
   border-color: #dd6b20;
 }
 
-.btn-danger {
-  background: var(--color-error);
-  color: var(--color-text-inverse);
-  border-color: var(--color-error);
+.delete-tier {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font-size: 1.5rem;
+  transition: all 0.15s;
 }
 
-.btn-danger:hover {
-  background: #e53e3e;
-  border-color: #e53e3e;
+.delete-tier:hover {
+  color: var(--color-background);
+  background: var(--color-error);
 }
 
 .btn-export {
@@ -2135,4 +2145,10 @@ body.modal-open {
   border: none;
   background-color: var(--color-primary);
   cursor: pointer;
+}
+
+.storage-info {
+  font-size: 0.75rem;
+  color: #9ca3af;
+  pointer-events: none;
 }

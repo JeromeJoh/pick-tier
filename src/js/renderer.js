@@ -218,8 +218,9 @@ export class Renderer {
           <input type="color" value="${tier.color}" 
                  onchange="tierMaker.updateTierColor('${tier.id}', this.value)"
                  class="color-input" title="Choose color">
-          <button class="btn btn-danger" onclick="tierMaker.deleteTier('${tier.id}')"
-                  style="padding: 8px 12px;" title="Delete tier"><i class="ph ph-trash"></i></button>
+          <button class="delete-tier" onclick="tierMaker.deleteTier('${tier.id}')">
+            <i class="ph ph-trash"></i>
+          </button>
         </div>
       </div>
     `).join('');
@@ -322,7 +323,7 @@ export class Renderer {
     }
 
     return `
-      <div class="nav-item storage-info" style="cursor: default; font-size: 0.75rem; color: #9ca3af;">
+      <div class="storage-info nav-item">
          <i class="ph ph-floppy-disk"></i>Last saved: ${new Date(storageInfo.timestamp).toLocaleTimeString()}
       </div>
     `;
