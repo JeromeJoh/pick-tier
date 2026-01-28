@@ -67,24 +67,10 @@ export class Renderer {
             <span>Present Mode</span>
           </button>
           <div class="export-button-wrapper">
-            <button class="nav-item" onclick="tierMaker.toggleExportOptions(event)">
+            <button class="nav-item export-button">
               <i class="ph ph-image-square"></i>
               <span>Export Image</span>
             </button>
-            <div class="export-options" id="exportOptions">
-              <button class="export-option" onclick="tierMaker.showExportPreview('png')">
-                Preview PNG
-              </button>
-              <button class="export-option" onclick="tierMaker.showExportPreview('jpeg')">
-                Preview JPEG
-              </button>
-              <button class="export-option" onclick="tierMaker.exportTierImage('png')">
-                Export PNG
-              </button>
-              <button class="export-option" onclick="tierMaker.exportTierImage('jpeg')">
-                Export JPEG
-              </button>
-            </div>
           </div>
           <button class="nav-item" onclick="tierMaker.resetAllRankings()">
             <i class="ph ph-arrow-clockwise"></i>

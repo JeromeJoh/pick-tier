@@ -484,6 +484,7 @@ body {
 
 /* 分级区域 */
 .tier-container {
+  background-color: inherit;
   margin-bottom: 32px;
 }
 
@@ -491,6 +492,8 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: end;
+  padding-inline: 1rem;
+  padding-top: 1rem;
 }
 
 .tier-stats {
@@ -505,6 +508,7 @@ body {
 
 .tier-stats div {
   flex-wrap: nowrap;
+  white-space: nowrap;
 }
 
 .tier-section-title input {
@@ -512,8 +516,6 @@ body {
   font-size: 1.8rem;
   font-weight: 600;
   color: #111827;
-  margin-bottom: 0.5rem;
-  padding: 1rem 0.5rem;
   background-color: transparent;
   outline: none;
   border: none;
@@ -574,7 +576,6 @@ body {
   background: #ffffff;
   display: flex;
   flex-wrap: wrap;
-  gap: 12px;
   align-items: flex-start;
   align-content: flex-start;
   min-height: 100px;
@@ -649,9 +650,9 @@ body {
 }
 
 .elements-container {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
   min-height: 150px;
   padding: 16px;
   border: 1px dashed #d1d5db;
@@ -705,8 +706,7 @@ body {
 
 /* 元素样式 */
 .element {
-  width: 80px;
-  height: 80px;
+  aspect-ratio: 1 / 1;
   cursor: grab;
   transition: all 0.2s ease;
   position: relative;
@@ -883,50 +883,6 @@ body {
   margin-top: 24px;
   padding-top: 24px;
   border-top: 1px solid #e5e7eb;
-}
-
-/* 导出选项样式 */
-.export-options {
-  display: none;
-  position: absolute;
-  top: 100%;
-  right: 0;
-  background: white;
-  border: 1px solid #d1d5db;
-  border-radius: 6px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-  z-index: 1000;
-  min-width: 150px;
-  margin-top: 4px;
-}
-
-.export-options.show {
-  display: block;
-}
-
-.export-option {
-  display: block;
-  width: 100%;
-  padding: 8px 12px;
-  border: none;
-  background: none;
-  text-align: left;
-  cursor: pointer;
-  font-size: 0.875rem;
-  color: #374151;
-  transition: background-color 0.2s ease;
-}
-
-.export-option:hover {
-  background: #f3f4f6;
-}
-
-.export-option:first-child {
-  border-radius: 6px 6px 0 0;
-}
-
-.export-option:last-child {
-  border-radius: 0 0 6px 6px;
 }
 
 .export-button-wrapper {

@@ -4,7 +4,6 @@ import { generateRandomColor, generateUniqueId, isImageFile } from './utils.js';
 import { DragHandler } from './dragHandler.js';
 import { ModalManager } from './modalManager.js';
 import { Renderer } from './renderer.js';
-import { ExportManager } from './exportManager.js';
 import { PresentMode } from './presentMode.js';
 import { StorageManager } from './storageManager.js';
 import { ToastManager } from './toastManager.js';
@@ -35,7 +34,6 @@ export class TierMaker {
     this.dragHandler = new DragHandler(this);
     this.modalManager = new ModalManager(this);
     this.renderer = new Renderer(this);
-    this.exportManager = new ExportManager(this);
     this.presentMode = new PresentMode(this);
 
     // 创建自动保存函数
@@ -230,12 +228,21 @@ export class TierMaker {
       });
     }
 
-    // 点击外部关闭导出选项
-    document.addEventListener('click', (e) => {
-      if (!e.target.closest('.export-button-wrapper')) {
-        this.hideExportOptions();
-      }
-    });
+    const exportButton = document.querySelector('.export-button')
+
+    exportButton.addEventListener('click', () => {
+      const node = document.querySelector('.tier-container')
+      domtoimage.toPng(node)
+        .then(function (dataUrl) {
+          const link = document.createElement('a')
+          link.download = 'export.png'
+          link.href = dataUrl
+          link.click()
+        })
+        .catch(function (error) {
+          console.error('oops, something went wrong!', error);
+        });
+    })
   }
 
   /**
@@ -743,88 +750,6 @@ export class TierMaker {
    */
   renderTierConfig() {
     return this.renderer.renderTierConfig();
-  }
-
-  /**
-   * 导出分级图片
-   * @param {string} format 导出格式 ('png' | 'jpeg')
-   */
-  async exportTierImage(format = 'png') {
-    // 隐藏导出选项
-    this.hideExportOptions();
-
-    // 检查是否有元素可导出
-    if (this.elements.length === 0) {
-      this.exportManager.showExportMessage('No elements to export. Please upload some images first.', 'error');
-      return;
-    }
-
-    // 执行导出
-    await this.exportManager.exportTierImage(format);
-  }
-
-  /**
-   * 显示导出预览
-   * @param {string} format 导出格式 ('png' | 'jpeg')
-   */
-  async showExportPreview(format = 'png') {
-    // 隐藏导出选项
-    this.hideExportOptions();
-
-    // 检查是否有元素可导出
-    if (this.elements.length === 0) {
-      this.exportManager.showExportMessage('No elements to preview. Please upload some images first.', 'error');
-      return;
-    }
-
-    // 显示预览
-    await this.exportManager.showExportPreview(format);
-  }
-
-  /**
-   * 确认导出（从预览模态框调用）
-   * @param {string} format 导出格式
-   */
-  async confirmExport(format) {
-    // 关闭预览模态框
-    const previewModal = document.querySelector('.preview-modal');
-    if (previewModal) {
-      previewModal.remove();
-      this.modalManager.allowBackgroundScroll();
-    }
-
-    // 执行导出
-    await this.exportManager.exportTierImage(format);
-  }
-
-  /**
-   * 切换导出选项显示
-   * @param {Event} event 点击事件
-   */
-  toggleExportOptions(event) {
-    event.stopPropagation();
-
-    // 隐藏其他导出选项
-    document.querySelectorAll('.export-options').forEach(el => {
-      if (el !== event.target.nextElementSibling) {
-        el.classList.remove('show');
-      }
-    });
-
-    // 切换当前导出选项
-    const options = event.target.nextElementSibling;
-    if (options) {
-      options.classList.toggle('show');
-    }
-  }
-
-  /**
-   * 隐藏所有导出选项
-   */
-  hideExportOptions() {
-    document.querySelectorAll('.export-options').forEach(el => {
-      el.classList.remove('show');
-    });
   }
 
   /**

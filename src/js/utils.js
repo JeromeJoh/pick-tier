@@ -93,36 +93,3 @@ export function downloadFile(content, filename, mimeType = 'text/plain') {
   document.body.removeChild(link);
   URL.revokeObjectURL(url);
 }
-
-/**
- * 将Canvas转换为图片并下载
- * @param {HTMLCanvasElement} canvas Canvas元素
- * @param {string} filename 文件名
- * @param {string} format 图片格式 ('png' | 'jpeg')
- * @param {number} quality 图片质量 (0-1)
- */
-export function downloadCanvasAsImage(canvas, filename, format = 'png', quality = 0.9) {
-  const mimeType = `image/${format}`;
-  const dataURL = canvas.toDataURL(mimeType, quality);
-  const link = document.createElement('a');
-  link.href = dataURL;
-  link.download = filename;
-  document.body.appendChild(link);
-  link.click();
-  document.body.removeChild(link);
-}
-
-/**
- * 等待图片加载完成
- * @param {string} src 图片源地址
- * @returns {Promise<HTMLImageElement>} 加载完成的图片元素
- */
-export function loadImage(src) {
-  return new Promise((resolve, reject) => {
-    const img = new Image();
-    img.crossOrigin = 'anonymous';
-    img.onload = () => resolve(img);
-    img.onerror = reject;
-    img.src = src;
-  });
-}
