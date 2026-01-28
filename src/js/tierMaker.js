@@ -228,21 +228,24 @@ export class TierMaker {
       });
     }
 
-    const exportButton = document.querySelector('.export-button')
+    const exportButtons = document.querySelectorAll('[data-action="export"]');
 
-    exportButton.addEventListener('click', () => {
-      const node = document.querySelector('.tier-container')
-      domtoimage.toPng(node)
-        .then(function (dataUrl) {
-          const link = document.createElement('a')
-          link.download = 'export.png'
-          link.href = dataUrl
-          link.click()
-        })
-        .catch(function (error) {
-          console.error('oops, something went wrong!', error);
-        });
+    [...exportButtons].forEach(button => {
+      button.addEventListener('click', () => {
+        const node = document.querySelector('.tier-container')
+        domtoimage.toPng(node)
+          .then(function (dataUrl) {
+            const link = document.createElement('a')
+            link.download = 'export.png'
+            link.href = dataUrl
+            link.click()
+          })
+          .catch(function (error) {
+            console.error('oops, something went wrong!', error);
+          });
+      })
     })
+
   }
 
   /**

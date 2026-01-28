@@ -27,8 +27,8 @@ export class Renderer {
       
       <div class="drag-indicator" id="dragIndicator"></div>
       
-      <button class="mobile-menu-btn" onclick="tierMaker.toggleSidebar()" style="display: none;">
-        Menu
+      <button class="main-export-button" data-action="export">
+        <i class="ph ph-share-fat"></i>
       </button>
     `;
   }
@@ -67,7 +67,7 @@ export class Renderer {
             <span>Present Mode</span>
           </button>
           <div class="export-button-wrapper">
-            <button class="nav-item export-button">
+            <button class="nav-item" data-action="export">
               <i class="ph ph-image-square"></i>
               <span>Export Image</span>
             </button>
@@ -211,7 +211,6 @@ export class Renderer {
   renderTierConfig() {
     return this.tierMaker.tiers.map(tier => `
       <div class="form-group">
-        <label>Tier ${tier.label}</label>
         <div style="display: flex; gap: 12px; align-items: center;">
           <input type="text" value="${tier.label}" 
                  onchange="tierMaker.updateTierLabel('${tier.id}', this.value)"
@@ -220,7 +219,7 @@ export class Renderer {
                  onchange="tierMaker.updateTierColor('${tier.id}', this.value)"
                  class="color-input" title="Choose color">
           <button class="btn btn-danger" onclick="tierMaker.deleteTier('${tier.id}')"
-                  style="padding: 8px 12px;" title="Delete tier">Delete</button>
+                  style="padding: 8px 12px;" title="Delete tier"><i class="ph ph-trash"></i></button>
         </div>
       </div>
     `).join('');

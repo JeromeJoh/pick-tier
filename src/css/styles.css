@@ -2111,3 +2111,16 @@ body.modal-open {
     height: 100%;
   }
 }
+
+.main-export-button {
+  position: fixed;
+  width: 3rem;
+  height: 3rem;
+  right: 2rem;
+  bottom: 2rem;
+  font-size: 1.5rem;
+  border-radius: 50%;
+  border: none;
+  background-color: var(--color-primary);
+  cursor: pointer;
+}
