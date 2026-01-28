@@ -168,7 +168,7 @@ export class DragHandler {
     const imageFiles = files.filter(file => isImageFile(file));
 
     if (imageFiles.length === 0) {
-      this.tierMaker.showMessage('No valid image files found. Please drop image files (PNG, JPG, GIF, WebP).', 'error');
+      toast.error('No valid image files found. Please drop image files (PNG, JPG, GIF, WebP).');
       return;
     }
 
@@ -177,7 +177,7 @@ export class DragHandler {
       `Processing ${imageFiles.length} image${imageFiles.length > 1 ? 's' : ''} and adding to tier...` :
       `Processing ${imageFiles.length} image${imageFiles.length > 1 ? 's' : ''}...`;
 
-    this.tierMaker.showMessage(targetMessage, 'info');
+    toast.info(targetMessage);
 
     // 处理图片文件
     this.processImageFiles(imageFiles, tierId);
@@ -223,11 +223,7 @@ export class DragHandler {
 
             const tierLabel = targetTier ? targetTier.label : 'tier';
 
-            // 显示成功消息
-            this.tierMaker.showMessage(
-              `Successfully added ${totalCount} image${totalCount > 1 ? 's' : ''} to ${tierLabel} tier!`,
-              'success'
-            );
+            toast.success(`Successfully added ${totalCount} image${totalCount > 1 ? 's' : ''} to ${tierLabel} tier!`)
 
             // 批量添加元素到分级区域
             const tierContent = document.querySelector(`[data-tier-id="${tierId}"]`);
@@ -250,10 +246,7 @@ export class DragHandler {
             }
           } else {
             // 显示成功消息
-            this.tierMaker.showMessage(
-              `Successfully added ${totalCount} image${totalCount > 1 ? 's' : ''} to elements pool!`,
-              'success'
-            );
+            toast.success(`Successfully added ${totalCount} image${totalCount > 1 ? 's' : ''} to elements pool!`);
 
             // 批量添加元素到元素池
             const container = document.getElementById('elementsContainer');
@@ -340,7 +333,7 @@ export class DragHandler {
           this.tierMaker.updateSidebarStats();
           this.tierMaker.autoSave();
 
-          this.tierMaker.showMessage('Some files could not be processed. Check console for details.', 'error');
+          toast.error('Some files could not be processed. Check console for details.');
         }
       };
 

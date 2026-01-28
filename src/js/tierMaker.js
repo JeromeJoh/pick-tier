@@ -6,15 +6,11 @@ import { ModalManager } from './modalManager.js';
 import { Renderer } from './renderer.js';
 import { PresentMode } from './presentMode.js';
 import { StorageManager } from './storageManager.js';
-import { ToastManager } from './toastManager.js';
 
 export class TierMaker {
   constructor() {
     // 初始化存储管理器
     this.storageManager = new StorageManager();
-
-    // 初始化Toast管理器
-    this.toastManager = new ToastManager();
 
     // 应用数据 - 先设置默认值
     this.elements = [];
@@ -109,7 +105,7 @@ export class TierMaker {
   showStorageStatus() {
     const storageInfo = this.storageManager.getStorageInfo();
     if (storageInfo && storageInfo.elementsCount > 0) {
-      this.showMessage(`Restored ${storageInfo.elementsCount} element${storageInfo.elementsCount > 1 ? 's' : ''} (Last saved: ${storageInfo.lastModified})`, 'success');
+      toast.success(`Restored ${storageInfo.elementsCount} element${storageInfo.elementsCount > 1 ? 's' : ''} (Last saved: ${storageInfo.lastModified})`);
     }
   }
 
@@ -119,7 +115,7 @@ export class TierMaker {
    * @param {string} type 消息类型
    */
   showMessage(message, type = 'info') {
-    this.toastManager.show(message, type, 'storage-message', 4000);
+    toast.show(message, type);
   }
 
   /**
@@ -690,7 +686,7 @@ export class TierMaker {
       this.autoSave();
       // 清除会话存储
       this.storageManager.clearData();
-      this.showMessage('All data cleared and session storage reset', 'info');
+      toast.info('All data cleared and session storage reset');
     }
   }
 
@@ -738,7 +734,7 @@ export class TierMaker {
    * @param {string} message 消息内容
    */
   showResetMessage(message) {
-    this.toastManager.show(message, 'success', 'reset-message', 3000);
+    toast.success(message);
   }
 
   // 模态框相关方法代理
@@ -891,9 +887,9 @@ export class TierMaker {
     };
 
     if (this.storageManager.exportData(dataToExport)) {
-      this.showMessage('Data backup exported successfully', 'success');
+      toast.success('Data backup exported successfully');
     } else {
-      this.showMessage('Failed to export data backup', 'error');
+      toast.error('Failed to export data backup');
     }
   }
 
@@ -926,10 +922,10 @@ export class TierMaker {
           this.render();
           this.bindEvents();
 
-          this.showMessage(`Successfully imported ${this.elements.length} elements and ${this.tiers.length} tiers`, 'success');
+          toast.success(`Successfully imported ${this.elements.length} elements and ${this.tiers.length} tiers`)
         }
       } catch (error) {
-        this.showMessage('Failed to import data: ' + error.message, 'error');
+        toast.error('Failed to import data: ' + error.message);
       }
     };
 

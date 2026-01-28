@@ -68,6 +68,8 @@
   --transition-fast: 0.15s ease;
   --transition-base: 0.2s ease;
   --transition-slow: 0.3s ease;
+
+  --element-size: 150px;
 }
 
 * {
@@ -527,14 +529,14 @@ body {
 
 .tier-row {
   display: flex;
-  min-height: 100px;
+  min-height: var(--element-size);
   overflow: hidden;
   border: 0.2px solid #e5e7eb;
   background: white;
 }
 
 .tier-label {
-  width: 150px;
+  width: var(--element-size);
   aspect-ratio: 1;
   display: flex;
   align-items: center;
@@ -573,15 +575,17 @@ body {
 
 .tier-content {
   flex: 1;
-  background: #ffffff;
   display: flex;
   flex-wrap: wrap;
-  align-items: flex-start;
-  align-content: flex-start;
-  min-height: 100px;
+  background: #ffffff;
   transition: all 0.2s ease;
   border-left: 1px solid #e5e7eb;
   position: relative;
+  min-height: var(--element-size);
+}
+
+.tier-content .element {
+  width: calc(var(--element-size) / 1);
 }
 
 .tier-content:hover {
@@ -650,9 +654,6 @@ body {
 }
 
 .elements-container {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 8px;
   min-height: 150px;
   padding: 16px;
   border: 1px dashed #d1d5db;
@@ -660,6 +661,17 @@ body {
   transition: all 0.2s ease;
   background: #fafafa;
   position: relative;
+}
+
+.elements-container:not(:has(.element)) {
+  display: grid;
+  place-items: center;
+}
+
+.elements-container:has(.element) {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
 }
 
 .elements-container.drag-over {

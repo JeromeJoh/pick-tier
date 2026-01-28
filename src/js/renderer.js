@@ -59,7 +59,7 @@ export class Renderer {
         <div class="nav-section">
           <h3 class="nav-section-title">Actions</h3>
           <button class="nav-item" onclick="tierMaker.openConfigModal()">
-            <i class="ph ph-text-indent"></i>
+            <i class="ph ph-gear"></i>
             <span>Configure Tiers</span>
           </button>
           <button class="nav-item" onclick="tierMaker.startPresentMode()">
@@ -97,7 +97,7 @@ export class Renderer {
             <i class="ph ph-arrow-square-in"></i>
             Import Backup
           </button>
-          <button class="nav-item" onclick="tierMaker.storageManager.clearData(); tierMaker.showMessage('Session storage cleared', 'info')">
+          <button class="nav-item" onclick="tierMaker.storageManager.clearData(); toast.info('Session storage cleared')">
             <i class="ph ph-x"></i>
             Clear Session
           </button>

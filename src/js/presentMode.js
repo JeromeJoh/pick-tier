@@ -22,7 +22,7 @@ export class PresentMode {
     );
 
     if (this.elements.length === 0) {
-      this.showMessage('No elements available for presentation. Please upload some images first.', 'error');
+      toast.error('No elements available for presentation. Please upload some images first.');
       return;
     }
 
@@ -270,8 +270,7 @@ export class PresentMode {
       this.tierMaker.moveElementToTier(element.id, tierId);
       console.log('Element moved to tier successfully');
     } catch (error) {
-      console.error('Error moving element to tier:', error);
-      this.showMessage('Failed to rank element. Please try again.', 'error');
+      toast.error('Failed to rank element. Please try again.');
       return;
     }
 
@@ -281,12 +280,12 @@ export class PresentMode {
     // 显示分级成功消息
     const tier = this.tierMaker.tiers.find(t => t.id === tierId);
     if (tier) {
-      this.showMessage(`"${element.name}" ranked as ${tier.label}`, 'success');
+      toast.success(`"${element.name}" ranked as ${tier.label}`);
     }
 
     // 如果没有更多元素，结束展示
     if (this.elements.length === 0) {
-      this.showMessage('All elements have been ranked!', 'success');
+      toast.success('All elements have been ranked!');
       setTimeout(() => this.stop(), 2000);
       return;
     }
@@ -321,11 +320,11 @@ export class PresentMode {
     if (this.autoAdvance) {
       this.startAutoAdvance();
       if (autoBtn) autoBtn.textContent = '⏸️';
-      this.showMessage('Auto advance enabled', 'success');
+      toast.success('Auto advance enabled');
     } else {
       this.stopAutoAdvance();
       if (autoBtn) autoBtn.textContent = '▶️';
-      this.showMessage('Auto advance disabled', 'success');
+      toast.success('Auto advance disabled');
     }
   }
 
@@ -418,7 +417,7 @@ export class PresentMode {
    * @param {string} type 消息类型
    */
   showMessage(message, type = 'info') {
-    this.tierMaker.toastManager.show(message, type, 'present-message', 3000);
+    toast.show(message, type);
   }
 
   /**
