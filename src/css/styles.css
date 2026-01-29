@@ -609,7 +609,7 @@ body {
 }
 
 .tier-content.drag-over::after {
-  content: '📁 Drop images here to add and rank in this tier';
+  content: 'Drop images here to rank';
   color: #2563eb;
   font-weight: 600;
   font-size: 0.875rem;
@@ -691,7 +691,7 @@ body {
 }
 
 .elements-container.drag-over::after {
-  content: '📁 Drop images here to add them to the pool';
+  content: 'Drop images here to add';
   color: #2563eb;
   font-weight: 600;
   font-size: 1rem;
