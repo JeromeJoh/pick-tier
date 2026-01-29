@@ -66,12 +66,14 @@ export class Renderer {
             <i class="ph ph-presentation"></i>
             <span>Present Mode</span>
           </button>
+          <!--
           <div class="export-button-wrapper">
             <button class="nav-item" data-action="export">
               <i class="ph ph-image-square"></i>
               <span>Export Image</span>
             </button>
           </div>
+          -->
           <button class="nav-item" onclick="tierMaker.resetAllRankings()">
             <i class="ph ph-arrow-clockwise"></i>
             <span>Reset Rankings</span>
@@ -212,14 +214,14 @@ export class Renderer {
     return this.tierMaker.tiers.map(tier => `
       <div class="form-group">
         <div style="display: flex; gap: 12px; align-items: center;">
+          <input type="color" value="${tier.color}" 
+                onchange="tierMaker.updateTierColor('${tier.id}', this.value)"
+                class="color-input" title="Choose color">
           <input type="text" value="${tier.label}" 
                  onchange="tierMaker.updateTierLabel('${tier.id}', this.value)"
                  style="flex: 1;" placeholder="Tier name">
-          <input type="color" value="${tier.color}" 
-                 onchange="tierMaker.updateTierColor('${tier.id}', this.value)"
-                 class="color-input" title="Choose color">
           <button class="delete-tier" onclick="tierMaker.deleteTier('${tier.id}')">
-            <i class="ph ph-trash"></i>
+            <i class="ph ph-x"></i>
           </button>
         </div>
       </div>
