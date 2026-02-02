@@ -1875,11 +1875,6 @@ body.modal-open {
   overflow: hidden;
 }
 
-.full-view-mode .tier-container {
-  transition: transform var(--overview-transition-duration) ease;
-  transform-origin: top left;
-}
-
 .full-view-mode .sidebar {
   transform: translateX(0) !important;
 }
@@ -1908,77 +1903,9 @@ body.modal-open {
   display: none !important;
 }
 
-/* tier-container 占据整个 main-content 区域 */
-.full-view-mode .tier-container {
-  margin: 0 !important;
-  padding: 0 !important;
-  width: 100%;
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  box-sizing: border-box;
-  position: relative;
-}
-
 /* 隐藏 tier 标题和统计信息 */
 .full-view-mode .tier-section-title {
   display: none !important;
-}
-
-/* 每个 tier-row 平分视口高度 */
-.full-view-mode .tier-row {
-  height: var(--full-view-tier-height);
-  min-height: var(--full-view-tier-height);
-  max-height: var(--full-view-tier-height);
-  flex-shrink: 0;
-  display: flex;
-  width: 100%;
-  border-bottom: 1px solid var(--color-border-light);
-}
-
-/* 移除最后一个 tier-row 的底边框 */
-.full-view-mode .tier-row:last-child {
-  border-bottom: none;
-}
-
-.full-view-mode .tier-label {
-  width: var(--full-view-tier-height);
-  height: var(--full-view-tier-height);
-  min-height: var(--full-view-tier-height);
-  max-height: var(--full-view-tier-height);
-  flex-shrink: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(var(--full-view-tier-height) * 0.2);
-  font-weight: 600;
-}
-
-/* tier-content 占据剩余的全部宽度 */
-.full-view-mode .tier-content {
-  flex: 1;
-  height: var(--full-view-tier-height);
-  min-height: var(--full-view-tier-height);
-  max-height: var(--full-view-tier-height);
-  display: flex;
-  flex-wrap: wrap;
-  align-items: flex-start;
-  align-content: flex-start;
-  overflow: hidden;
-  padding: 4px;
-  box-sizing: border-box;
-}
-
-.full-view-mode .tier-content .element {
-  width: calc(var(--full-view-tier-height) - 8px);
-  height: calc(var(--full-view-tier-height) - 8px);
-  flex-shrink: 0;
-  margin: 2px;
-}
-
-/* 确保所有分级行都能正确显示 */
-.full-view-mode .tier-container > * {
-  flex-shrink: 0;
 }
 
 /* 全景模式按钮激活状态 */

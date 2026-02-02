@@ -74,9 +74,7 @@ export class FullViewMode {
    * 清理动态高度 CSS 变量
    */
   clearDynamicHeights() {
-    document.documentElement.style.removeProperty('--full-view-element-size');
-    document.documentElement.style.removeProperty('--full-view-available-height');
-    document.documentElement.style.removeProperty('--full-view-tier-height');
+    document.documentElement.style.setProperty('--element-size', '150px');
   }
 
   /**
@@ -135,16 +133,7 @@ export class FullViewMode {
     const tierHeight = Math.floor(viewportHeight / tierCount);
 
     // 设置 CSS 变量
-    document.documentElement.style.setProperty('--full-view-tier-height', `${tierHeight}px`);
-    document.documentElement.style.setProperty('--full-view-available-height', `${viewportHeight}px`);
-    document.documentElement.style.setProperty('--full-view-element-size', `${tierHeight}px`);
-
-    console.log('Dynamic heights calculated for full viewport:', {
-      viewportHeight,
-      tierCount,
-      tierHeight,
-      totalUsedHeight: tierHeight * tierCount
-    });
+    document.documentElement.style.setProperty('--element-size', `${tierHeight}px`);
   }
 
   /**
@@ -230,13 +219,6 @@ export class FullViewMode {
     // 强制显示侧边栏
     if (sidebar) {
       sidebar.classList.add('open');
-    }
-
-    // 调整主内容区域
-    if (mainContent) {
-      mainContent.style.marginLeft = '280px';
-      mainContent.style.maxWidth = 'calc(100vw - 280px)';
-      mainContent.style.padding = '0';
     }
 
     // 防止页面滚动

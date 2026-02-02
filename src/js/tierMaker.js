@@ -179,7 +179,9 @@ export class TierMaker {
           this.dragHandler.dragIndicator.classList.remove('show');
         }
       });
+    }
 
+    if (sidebar) {
       // 元素池拖拽事件
       sidebar.addEventListener('dragover', (e) => {
         const elementsContainer = document.querySelector('.elements-container');
@@ -221,24 +223,21 @@ export class TierMaker {
       });
     }
 
-    const exportButtons = document.querySelectorAll('[data-action="export"]');
+    const exportButton = document.querySelector('[data-action="export"]');
 
-    [...exportButtons].forEach(button => {
-      button.addEventListener('click', () => {
-        const node = document.querySelector('.tier-container')
-        domtoimage.toPng(node)
-          .then(function (dataUrl) {
-            const link = document.createElement('a')
-            link.download = 'export.png'
-            link.href = dataUrl
-            link.click()
-          })
-          .catch(function (error) {
-            console.error('oops, something went wrong!', error);
-          });
-      })
+    exportButton.addEventListener('click', () => {
+      const node = document.querySelector('.tier-container')
+      domtoimage.toPng(node)
+        .then(function (dataUrl) {
+          const link = document.createElement('a')
+          link.download = 'export.png'
+          link.href = dataUrl
+          link.click()
+        })
+        .catch(function (error) {
+          console.error('oops, something went wrong!', error);
+        });
     })
-
   }
 
   /**
