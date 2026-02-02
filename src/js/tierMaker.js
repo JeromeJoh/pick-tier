@@ -5,6 +5,9 @@ import { DragHandler } from './dragHandler.js';
 import { ModalManager } from './modalManager.js';
 import { Renderer } from './renderer.js';
 import { PresentMode } from './presentMode.js';
+import { OverviewMode } from './overviewMode.js';
+import { FullViewMode } from './fullViewMode.js';
+import { ElementModal } from './elementModal.js';
 import { StorageManager } from './storageManager.js';
 
 export class TierMaker {
@@ -31,6 +34,9 @@ export class TierMaker {
     this.modalManager = new ModalManager(this);
     this.renderer = new Renderer(this);
     this.presentMode = new PresentMode(this);
+    this.overviewMode = new OverviewMode(this);
+    this.fullViewMode = new FullViewMode(this);
+    this.elementModal = new ElementModal(this);
 
     // 创建自动保存函数
     this.autoSave = this.storageManager.createAutoSave(() => {
@@ -805,6 +811,27 @@ export class TierMaker {
       inline: 'nearest',
     })
     this.presentMode.start();
+  }
+
+  /**
+   * 切换全景模式
+   */
+  toggleFullViewMode() {
+    this.fullViewMode.toggle();
+  }
+
+  /**
+   * 进入全景模式
+   */
+  enterFullViewMode() {
+    this.fullViewMode.enter();
+  }
+
+  /**
+   * 退出全景模式
+   */
+  exitFullViewMode() {
+    this.fullViewMode.exit();
   }
 
   /**

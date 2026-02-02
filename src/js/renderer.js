@@ -62,6 +62,14 @@ export class Renderer {
             <i class="ph ph-gear"></i>
             <span>Configure Tiers</span>
           </button>
+          <button class="nav-item" onclick="tierMaker.toggleOverviewMode()" data-action="overview-mode">
+            <i class="ph ph-eye"></i>
+            <span>Overview Mode</span>
+          </button>
+          <button class="nav-item" onclick="tierMaker.toggleFullViewMode()" data-action="full-view-mode">
+            <i class="ph ph-monitor"></i>
+            <span>Full View Mode</span>
+          </button>
           <button class="nav-item" onclick="tierMaker.startPresentMode()">
             <i class="ph ph-presentation"></i>
             <span>Present Mode</span>
