@@ -43,6 +43,15 @@ export class Renderer {
         <img src="logo.svg" alt="Pick Tier Logo" class="sidebar-logo">
         <h1>Pick Tier</h1>
       </div>
+
+      <div class="toggle-fullview-mode">
+        <p>Full View Mode</p>
+          <label class="switch">
+            <input type="checkbox" onchange="tierMaker.toggleFullViewMode()" ${this.tierMaker.fullViewMode && this.tierMaker.fullViewMode.isActive ? 'checked' : ''}>
+            <span class="slider"></span>
+          </label>
+      </div>
+
       <div class="elements-pool">
         <div class="elements-pool-header">
           <h3>Elements Pool</h3>
@@ -61,10 +70,6 @@ export class Renderer {
           <button class="nav-item" onclick="tierMaker.openConfigModal()">
             <i class="ph ph-gear"></i>
             <span>Configure Tiers</span>
-          </button>
-          <button class="nav-item" onclick="tierMaker.toggleFullViewMode()" data-action="full-view-mode">
-            <i class="ph ph-eye"></i>
-            <span>Full View Mode</span>
           </button>
           <button class="nav-item" onclick="tierMaker.startPresentMode()">
             <i class="ph ph-presentation"></i>
