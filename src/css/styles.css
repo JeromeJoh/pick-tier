@@ -72,7 +72,7 @@
   /* 概览模式变量 */
   --overview-transition-duration: 0.3s;
   --overview-min-scale: 0.3;
-  --overview-max-scale: 1.0;
+  --overview-max-scale: 1;
   --overview-margin: 50px;
 
   --element-size: 150px;
@@ -2149,12 +2149,12 @@ body.modal-open {
 }
 
 /* 概览模式按钮激活状态 */
-.nav-item[data-action="overview-mode"].active {
+.nav-item[data-action='overview-mode'].active {
   background: var(--color-primary-light);
   color: var(--color-text-primary);
 }
 
-.nav-item[data-action="overview-mode"].active::before {
+.nav-item[data-action='overview-mode'].active::before {
   transform: scaleY(1);
 }
 
@@ -2164,7 +2164,7 @@ body.modal-open {
     margin-left: 0 !important;
     max-width: 100vw !important;
   }
-  
+
   .overview-mode .sidebar {
     transform: translateX(0) !important;
     z-index: 200;
@@ -2175,7 +2175,7 @@ body.modal-open {
   :root {
     --overview-margin: 20px;
   }
-  
+
   .overview-mode .tier-container {
     margin: var(--overview-margin);
   }
@@ -2298,22 +2298,22 @@ body.modal-open {
 }
 
 /* 全景模式按钮激活状态 */
-.nav-item[data-action="full-view-mode"] {
+.nav-item[data-action='full-view-mode'] {
   position: relative;
   transition: all var(--transition-base);
 }
 
-.nav-item[data-action="full-view-mode"].active {
+.nav-item[data-action='full-view-mode'].active {
   background: var(--color-primary-light);
   color: var(--color-text-primary);
   font-weight: 600;
 }
 
-.nav-item[data-action="full-view-mode"].active::before {
+.nav-item[data-action='full-view-mode'].active::before {
   transform: scaleY(1);
 }
 
-.nav-item[data-action="full-view-mode"].active::after {
+.nav-item[data-action='full-view-mode'].active::after {
   content: '●';
   position: absolute;
   right: 12px;
@@ -2324,12 +2324,12 @@ body.modal-open {
 }
 
 /* 为全景模式按钮添加图标变化 */
-.nav-item[data-action="full-view-mode"]:not(.active) i::before {
-  content: "\f2c5"; /* ph-monitor */
+.nav-item[data-action='full-view-mode']:not(.active) i::before {
+  content: '\f2c5'; /* ph-monitor */
 }
 
-.nav-item[data-action="full-view-mode"].active i::before {
-  content: "\f2c6"; /* ph-monitor-fill */
+.nav-item[data-action='full-view-mode'].active i::before {
+  content: '\f2c6'; /* ph-monitor-fill */
 }
 
 /* 元素双击模态框样式 */
@@ -2503,7 +2503,7 @@ body.modal-open {
   .element-modal-tier-buttons {
     grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
   }
-  
+
   .element-modal-tier-btn {
     min-height: 50px;
     padding: var(--spacing-sm);
@@ -2657,7 +2657,7 @@ body.modal-open {
     margin-left: 0 !important;
     max-width: 100vw !important;
   }
-  
+
   .full-view-mode .sidebar {
     transform: translateX(0) !important;
     z-index: 200;
@@ -2704,7 +2704,7 @@ body.modal-open {
   .full-view-tier-buttons {
     grid-template-columns: 1fr 1fr;
   }
-  
+
   .full-view-tier-btn {
     min-height: 50px;
     padding: var(--spacing-sm);

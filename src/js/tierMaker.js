@@ -5,7 +5,6 @@ import { DragHandler } from './dragHandler.js';
 import { ModalManager } from './modalManager.js';
 import { Renderer } from './renderer.js';
 import { PresentMode } from './presentMode.js';
-import { OverviewMode } from './overviewMode.js';
 import { FullViewMode } from './fullViewMode.js';
 import { ElementModal } from './elementModal.js';
 import { StorageManager } from './storageManager.js';
@@ -34,7 +33,6 @@ export class TierMaker {
     this.modalManager = new ModalManager(this);
     this.renderer = new Renderer(this);
     this.presentMode = new PresentMode(this);
-    this.overviewMode = new OverviewMode(this);
     this.fullViewMode = new FullViewMode(this);
     this.elementModal = new ElementModal(this);
 

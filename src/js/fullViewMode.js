@@ -357,13 +357,13 @@ export class FullViewMode {
         fullViewButton.classList.add('active');
         if (span) span.textContent = 'Exit Full View';
         if (icon) {
-          icon.className = 'ph ph-monitor-fill';
+          icon.className = 'ph ph-eye-slash';
         }
       } else {
         fullViewButton.classList.remove('active');
         if (span) span.textContent = 'Full View Mode';
         if (icon) {
-          icon.className = 'ph ph-monitor';
+          icon.className = 'ph ph-eye';
         }
       }
     }
