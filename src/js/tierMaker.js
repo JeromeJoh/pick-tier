@@ -226,18 +226,30 @@ export class TierMaker {
     const exportButton = document.querySelector('[data-action="export"]');
 
     exportButton.addEventListener('click', () => {
-      const node = document.querySelector('.tier-container')
-      domtoimage.toPng(node)
-        .then(function (dataUrl) {
-          const link = document.createElement('a')
-          link.download = 'export.png'
-          link.href = dataUrl
-          link.click()
-        })
-        .catch(function (error) {
-          console.error('oops, something went wrong!', error);
-        });
+      if (sidebar.classList.contains('open')) {
+        this.toggleSidebar();
+        sidebar.addEventListener('transitionend', this.exportTo.bind(this), { once: true })
+      } else {
+        this.exportTo();
+      }
     })
+  }
+
+  /**
+   * 导出分级图像
+   */
+  exportTo() {
+    const node = document.querySelector('.tier-container')
+    domtoimage.toPng(node)
+      .then(function (dataUrl) {
+        const link = document.createElement('a')
+        link.download = 'export.png'
+        link.href = dataUrl
+        link.click()
+      })
+      .catch(function (error) {
+        console.error('oops, something went wrong!', error);
+      });
   }
 
   /**
