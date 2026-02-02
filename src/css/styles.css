@@ -1429,11 +1429,9 @@ input[type='color'] {
 
 /* 快速分级区域 */
 .present-tiers {
-  position: absolute;
-  bottom: 0;
-  left: 0;
   width: 100%;
   flex-shrink: 0; /* 确保分级栏不会被压缩 */
+  background-color: var(--color-background);
 }
 
 .present-tier-buttons {
@@ -1442,9 +1440,11 @@ input[type='color'] {
   flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
+  flex-wrap: nowrap;
 }
 
 .present-tier-btn {
+  flex: 1;
   background: #6b7280;
   color: black;
   border: none;
@@ -1751,15 +1751,16 @@ input[type='color'] {
 /* 键盘快捷键提示 */
 .element-shortcuts {
   position: absolute;
-  left: 0;
+  left: 50%;
+  transform: translateX(-50%);
   top: 0;
-  margin: 1rem;
+  margin-top: 1rem;
   background: rgba(0, 0, 0, 0.8);
   color: white;
   padding: 8px 12px;
   border-radius: 6px;
   font-size: 0.75rem;
-  opacity: 0.6;
+  opacity: 0.7;
   transition: opacity 0.2s ease;
 }
 
@@ -2373,6 +2374,7 @@ body.modal-open {
   position: absolute;
   inset: 10% 20%;
   transform: scale(0.9);
+  max-height: 90dvh;
   transition: transform var(--transition-slow);
   display: flex;
   flex-direction: column;
@@ -2396,6 +2398,8 @@ body.modal-open {
   display: block;
   width: 100%;
   height: 100%;
+  max-width: 100dvw;
+  max-height: 80dvh;
   object-fit: cover;
 }
 
