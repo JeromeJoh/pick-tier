@@ -242,7 +242,7 @@ export class ModalManager {
    */
   allowBackgroundScroll() {
     // 检查是否还有其他模态框打开
-    const openModals = document.querySelectorAll('.modal.show, .preview-modal.show, .present-modal.show');
+    const openModals = document.querySelectorAll('.modal.show, .preview-modal.show, .element-modal.show');
     if (openModals.length === 0) {
       document.body.classList.remove('modal-open');
     }

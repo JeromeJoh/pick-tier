@@ -4,7 +4,6 @@ import { generateRandomColor, generateUniqueId, isImageFile } from './utils.js';
 import { DragHandler } from './dragHandler.js';
 import { ModalManager } from './modalManager.js';
 import { Renderer } from './renderer.js';
-import { PresentMode } from './presentMode.js';
 import { FullViewMode } from './fullViewMode.js';
 import { ElementModal } from './elementModal.js';
 import { StorageManager } from './storageManager.js';
@@ -32,7 +31,6 @@ export class TierMaker {
     this.dragHandler = new DragHandler(this);
     this.modalManager = new ModalManager(this);
     this.renderer = new Renderer(this);
-    this.presentMode = new PresentMode(this);
     this.fullViewMode = new FullViewMode(this);
     this.elementModal = new ElementModal(this);
 
@@ -795,20 +793,6 @@ export class TierMaker {
    */
   renderTierConfig() {
     return this.renderer.renderTierConfig();
-  }
-
-  /**
-   * 启动幻灯片展示模式
-   */
-  startPresentMode() {
-    this.toggleSidebar();
-    console.log('Starting present mode', document.querySelector('.tier-container'));
-    document.querySelector('.tier-container').scrollIntoView({
-      behavior: 'smooth',
-      block: 'start',
-      inline: 'nearest',
-    })
-    this.presentMode.start();
   }
 
   /**

@@ -71,10 +71,6 @@ export class Renderer {
             <i class="ph ph-gear"></i>
             <span>Configure Tiers</span>
           </button>
-          <button class="nav-item" onclick="tierMaker.startPresentMode()">
-            <i class="ph ph-presentation"></i>
-            <span>Present Mode</span>
-          </button>
           <!--
           <div class="export-button-wrapper">
             <button class="nav-item" data-action="export">

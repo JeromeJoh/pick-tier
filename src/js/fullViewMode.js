@@ -49,9 +49,6 @@ export class FullViewMode {
     // 更新状态
     this.isActive = true;
 
-    // 更新UI反馈
-    this.updateModeIndicator();
-
     console.log('Full view mode entered');
   }
 
@@ -69,9 +66,6 @@ export class FullViewMode {
 
     // 更新状态
     this.isActive = false;
-
-    // 更新UI反馈
-    this.updateModeIndicator();
 
     console.log('Full view mode exited');
   }
@@ -341,32 +335,6 @@ export class FullViewMode {
 
     // 恢复页面滚动
     body.style.overflow = this.originalLayout?.bodyOverflow || '';
-  }
-
-  /**
-   * 更新模式指示器
-   */
-  updateModeIndicator() {
-    const fullViewButton = document.querySelector('[data-action="full-view-mode"]');
-
-    if (fullViewButton) {
-      const span = fullViewButton.querySelector('span');
-      const icon = fullViewButton.querySelector('i');
-
-      if (this.isActive) {
-        fullViewButton.classList.add('active');
-        if (span) span.textContent = 'Exit Full View';
-        if (icon) {
-          icon.className = 'ph ph-eye-slash';
-        }
-      } else {
-        fullViewButton.classList.remove('active');
-        if (span) span.textContent = 'Full View Mode';
-        if (icon) {
-          icon.className = 'ph ph-eye';
-        }
-      }
-    }
   }
 
   /**
