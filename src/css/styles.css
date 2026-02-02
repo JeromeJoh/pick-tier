@@ -2373,6 +2373,7 @@ body.modal-open {
   display: inline-block;
   width: 3.5em;
   height: 2em;
+  scale: 0.6;
 }
 
 /* Hide default HTML checkbox */
@@ -2409,12 +2410,12 @@ body.modal-open {
 }
 
 input:checked + .slider {
-  background-color: #007bff;
-  border: 1px solid #007bff;
+  background-color: var(--color-primary-dark);
+  border: 1px solid var(--color-primary-dark);
 }
 
 input:focus + .slider {
-  box-shadow: 0 0 1px #007bff;
+  box-shadow: 0 0 1px var(--color-primary-dark);
 }
 
 input:checked + .slider:before {
@@ -2426,4 +2427,5 @@ input:checked + .slider:before {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding: 6px 12px 6px 20px;
 }

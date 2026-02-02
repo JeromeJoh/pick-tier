@@ -48,10 +48,6 @@ export class TierMaker {
   init() {
     this.render();
     this.bindEvents();
-
-    // 显示存储状态信息
-    this.showStorageStatus();
-
   }
 
   /**
@@ -79,8 +75,7 @@ export class TierMaker {
       if (savedData.nextElementId && typeof savedData.nextElementId === 'number') {
         this.nextElementId = savedData.nextElementId;
       }
-
-      console.log(`Restored ${this.elements.length} elements and ${this.tiers.length} tiers from session storage`);
+      this.showStorageStatus();
     }
   }
 
@@ -107,7 +102,7 @@ export class TierMaker {
   showStorageStatus() {
     const storageInfo = this.storageManager.getStorageInfo();
     if (storageInfo && storageInfo.elementsCount > 0) {
-      toast.success(`Restored ${storageInfo.elementsCount} element${storageInfo.elementsCount > 1 ? 's' : ''} (Last saved: ${storageInfo.lastModified})`);
+      toast.success(`Restored ${storageInfo.elementsCount} element${storageInfo.elementsCount > 1 ? 's' : ''}`);
     }
   }
 
