@@ -119,8 +119,8 @@ export class ElementModal {
             <img src="${element.src}" alt="${element.name}" loading="lazy">
           </div>
         </div>
-        <div class="present-tiers">
-          <div class="present-tier-buttons">
+        <div class="element-modal-tiers">
+          <div class="element-modal-tier-buttons">
             ${this.renderTierButtons()}
            </div>
         </div>
@@ -151,7 +151,7 @@ export class ElementModal {
    */
   renderTierButtons() {
     return this.tierMaker.tiers.map(tier => `
-      <button class="present-tier-btn" 
+      <button class="element-modal-tier-btn" 
               style="background-color: ${tier.color}" 
               onclick="elementModal.rankElement('${tier.id}')"
               title="Rank as ${tier.label}">
