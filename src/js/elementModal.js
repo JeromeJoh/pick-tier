@@ -107,44 +107,27 @@ export class ElementModal {
 
     this.modal = document.createElement('div');
     this.modal.className = 'element-modal';
+    this.modal.onclick = (e) => {
+      if (e.target === this.modal) {
+        this.closeModal();
+      }
+    };
     this.modal.innerHTML = `
       <div class="element-modal-content">
-        <div class="element-modal-header">
-          <h3>${element.name}</h3>
-          <button class="element-modal-close" onclick="elementModal.closeModal()">
-            <i class="ph ph-x"></i>
-          </button>
-        </div>
-        
         <div class="element-modal-main">
           <div class="element-modal-image">
             <img src="${element.src}" alt="${element.name}" loading="lazy">
           </div>
-          
-          <div class="element-modal-info">
-            <p class="element-modal-description">
-              ${element.description || 'No description available'}
-            </p>
-          </div>
         </div>
         
-        <div class="element-modal-actions">
-          <h4>Quick Rank</h4>
-          <div class="element-modal-tier-buttons">
+        <div class="present-tiers">
+          <div class="present-tier-buttons">
             ${this.renderTierButtons()}
-          </div>
-          
-          <div class="element-modal-controls">
-            <button class="btn" onclick="elementModal.moveToPool()">
-              <i class="ph ph-arrow-left"></i>
-              Move to Pool
-            </button>
-            <button class="btn" onclick="tierMaker.editElement('${element.id}')">
-              <i class="ph ph-pencil"></i>
-              Edit Details
-            </button>
-          </div>
+           </div>
         </div>
+      </div>
+      <div class="element-shortcuts">
+        <div>Keyboard Shortcuts: 1-5 Quick Rank | ESC Exit</div>
       </div>
     `;
 
@@ -165,17 +148,15 @@ export class ElementModal {
 
   /**
    * 渲染分级按钮
+   * @returns {string} HTML字符串
    */
   renderTierButtons() {
-    return this.tierMaker.tiers.map((tier, index) => `
-      <button class="element-modal-tier-btn" 
+    return this.tierMaker.tiers.map(tier => `
+      <button class="present-tier-btn btn" 
               style="background-color: ${tier.color}" 
               onclick="elementModal.rankElement('${tier.id}')"
-              data-tier-id="${tier.id}"
-              data-shortcut="${index + 1}"
-              title="Rank as ${tier.label} (Press ${index + 1})">
-        <span class="tier-label">${tier.label}</span>
-        <span class="tier-shortcut">${index + 1}</span>
+              title="Rank as ${tier.label}">
+        ${tier.label}
       </button>
     `).join('');
   }
