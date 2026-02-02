@@ -797,6 +797,13 @@ export class TierMaker {
    * 启动幻灯片展示模式
    */
   startPresentMode() {
+    this.toggleSidebar();
+    console.log('Starting present mode', document.querySelector('.tier-container'));
+    document.querySelector('.tier-container').scrollIntoView({
+      behavior: 'smooth',
+      block: 'start',
+      inline: 'nearest',
+    })
     this.presentMode.start();
   }
 

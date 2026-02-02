@@ -66,12 +66,15 @@ export class PresentMode {
             <span class="present-counter">1 / ${this.elements.length}</span>
             <h3>Present Mode</h3>
           </div>
+          <div class="present-shortcuts">
+            <div>Keyboard Shortcuts: ←→ Navigate | 1-5 Quick Rank | S Skip | ESC Exit</div>
+          </div>
           <div class="present-controls">
             <button class="present-btn present-auto-btn" onclick="presentMode.toggleAutoAdvance()" title="Toggle Auto Advance">
-              ⏯️
+              <i class="ph ph-play-pause"></i>
             </button>
             <button class="present-btn present-close-btn" onclick="presentMode.stop()" title="Exit Present Mode">
-              ✕
+              <i class="ph ph-x"></i>
             </button>
           </div>
         </div>
@@ -79,7 +82,7 @@ export class PresentMode {
         <div class="present-main">
           <div class="present-navigation">
             <button class="present-nav-btn present-prev-btn" onclick="presentMode.previous()" title="Previous">
-              ◀
+              <i class="ph ph-caret-left"></i>
             </button>
           </div>
           
@@ -95,15 +98,14 @@ export class PresentMode {
           
           <div class="present-navigation">
             <button class="present-nav-btn present-next-btn" onclick="presentMode.next()" title="Next">
-              ▶
+              <i class="ph ph-caret-right"></i>
             </button>
           </div>
-        </div>
-        
-        <div class="present-tiers">
-          <h5>Quick Rank</h5>
-          <div class="present-tier-buttons">
-            ${this.renderTierButtons()}
+
+          <div class="present-tiers">
+            <div class="present-tier-buttons">
+              ${this.renderTierButtons()}
+            </div>
           </div>
         </div>
         
@@ -114,17 +116,13 @@ export class PresentMode {
             </div>
           </div>
           <div class="present-actions">
-            <button class="present-btn present-skip-btn" onclick="presentMode.skipElement()">
+            <button class="btn" onclick="presentMode.skipElement()">
               Skip
             </button>
-            <button class="present-btn present-finish-btn" onclick="presentMode.stop()">
+            <button class="btn btn-primary" onclick="presentMode.stop()">
               Finish
             </button>
           </div>
-        </div>
-        
-        <div class="present-shortcuts">
-          <div>⌨️ Shortcuts: ←→ Navigate | 1-5 Quick Rank | S Skip | ESC Exit</div>
         </div>
       </div>
     `;
@@ -319,11 +317,11 @@ export class PresentMode {
 
     if (this.autoAdvance) {
       this.startAutoAdvance();
-      if (autoBtn) autoBtn.textContent = '⏸️';
-      toast.success('Auto advance enabled');
+      if (autoBtn) autoBtn.innerHTML = '<i class="ph ph-pause"></i>';
+      toast.success('Auto advance enabled', {});
     } else {
       this.stopAutoAdvance();
-      if (autoBtn) autoBtn.textContent = '▶️';
+      if (autoBtn) autoBtn.innerHTML = '<i class="ph ph-play"></i>';
       toast.success('Auto advance disabled');
     }
   }
@@ -417,7 +415,7 @@ export class PresentMode {
    * @param {string} type 消息类型
    */
   showMessage(message, type = 'info') {
-    toast.show(message, type);
+    toast.show(message, type, 'present-mode-message');
   }
 
   /**

@@ -304,6 +304,8 @@ body {
     margin-left var(--transition-slow),
     max-width var(--transition-slow);
   background: var(--color-background);
+  scroll-snap-type: y mandatory;
+  scroll-behavior: smooth;
 }
 
 .sidebar.open ~ .main-content {
@@ -398,7 +400,7 @@ body {
   color: var(--color-text-primary);
   border: 1px solid var(--color-border);
   padding: var(--spacing-sm) var(--spacing-md);
-  border-radius: var(--radius-md);
+  border-radius: 99rem;
   cursor: pointer;
   font-weight: 500;
   font-size: var(--font-size-sm);
@@ -413,7 +415,6 @@ body {
 }
 
 .btn:hover {
-  background: var(--color-surface-variant);
   border-color: var(--color-divider);
   transform: translateY(-1px);
   box-shadow: var(--shadow-md);
@@ -425,7 +426,7 @@ body {
 }
 
 .btn-primary {
-  background: var(--color-primary);
+  background: var(--color-primary-dark);
   color: var(--color-text-inverse);
   border-color: var(--color-primary);
 }
@@ -499,6 +500,7 @@ body {
 .tier-container {
   background-color: inherit;
   margin-bottom: 32px;
+  scroll-margin-top: 180px;
 }
 
 .tier-section-title {
@@ -884,6 +886,7 @@ body {
 .form-group input:focus,
 .form-group textarea:focus {
   outline: none;
+  border-color: var(--color-primary);
 }
 
 input[type='color'] {
@@ -1263,6 +1266,8 @@ input[type='color'] {
   opacity: 0;
   visibility: hidden;
   transition: all 0.3s ease;
+  /* background-color: rgba(0, 0, 0, 0.2); */
+  backdrop-filter: blur(4px);
 }
 
 .present-modal.show {
@@ -1273,7 +1278,6 @@ input[type='color'] {
 .present-content {
   width: 100%;
   height: 100%;
-  background: white;
   display: flex;
   flex-direction: column;
   overflow: hidden;
@@ -1287,11 +1291,11 @@ input[type='color'] {
 
 /* 幻灯片头部 */
 .present-header {
+  position: relative;
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 16px 24px;
-  background: #f8f9fa;
   border-bottom: 1px solid #e5e7eb;
 }
 
@@ -1314,21 +1318,19 @@ input[type='color'] {
 }
 
 .present-btn {
-  background: white;
-  border: 1px solid #d1d5db;
-  border-radius: 6px;
   padding: 8px 12px;
   cursor: pointer;
-  font-size: 0.875rem;
+  font-size: 1.5rem;
   transition: all 0.2s ease;
   display: flex;
   align-items: center;
   justify-content: center;
+  transition: all 0.15s;
 }
 
 .present-btn:hover {
-  background: #f3f4f6;
-  border-color: #9ca3af;
+  filter: brightness(1.2);
+  scale: 0.95;
 }
 
 .present-close-btn {
@@ -1336,36 +1338,33 @@ input[type='color'] {
   font-weight: bold;
 }
 
-.present-close-btn:hover {
-  background: #fef2f2;
-  border-color: #dc2626;
-}
-
 /* 幻灯片主体 */
 .present-main {
+  position: relative;
   flex: 1;
   display: flex;
   align-items: center;
-  padding: 24px;
-  gap: 24px;
+  justify-content: space-between;
   min-height: 0; /* 允许 flex 子元素收缩 */
 }
 
 .present-navigation {
+  height: 100%;
+  z-index: 100;
   display: flex;
+  justify-content: space-between;
   align-items: center;
   flex-shrink: 0; /* 防止导航按钮被压缩 */
 }
 
 .present-nav-btn {
-  background: #2563eb;
-  color: white;
+  color: var(--color-text-primary);
   border: none;
   border-radius: 50%;
   width: 48px;
   height: 48px;
   cursor: pointer;
-  font-size: 1.2rem;
+  font-size: 3rem;
   transition: all 0.2s ease;
   display: flex;
   align-items: center;
@@ -1373,51 +1372,36 @@ input[type='color'] {
 }
 
 .present-nav-btn:hover:not(:disabled) {
-  background: #1d4ed8;
   transform: scale(1.1);
 }
 
 .present-nav-btn:disabled {
-  background: #9ca3af;
   cursor: not-allowed;
   opacity: 0.5;
 }
 
 .present-display {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 20px;
-  min-height: 0; /* 允许内容收缩 */
-  overflow: hidden; /* 防止内容溢出 */
-}
-
-.present-image-container {
-  flex: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  max-height: 50vh; /* 减少图片最大高度，为分级栏留出空间 */
-  width: 100%;
-  min-height: 200px;
-  background: #f8f9fa;
-  border-radius: 8px;
+  position: absolute;
+  inset: 0;
   overflow: hidden;
 }
 
+.present-image-container {
+  width: 100%;
+  height: 100%;
+}
+
 .present-image {
-  max-width: 100%;
-  max-height: 100%;
-  width: auto;
-  height: auto;
-  object-fit: contain;
-  border-radius: 8px;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
   transition: all 0.3s ease;
 }
 
 .present-element-info {
+  position: absolute;
+  bottom: 0;
+  left: 0;
   text-align: center;
   max-width: 600px;
   flex-shrink: 0; /* 防止元素信息被压缩 */
@@ -1439,25 +1423,16 @@ input[type='color'] {
 
 /* 快速分级区域 */
 .present-tiers {
-  padding: 16px 24px;
-  background: #f8f9fa;
-  border-top: 1px solid #e5e7eb;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
   flex-shrink: 0; /* 确保分级栏不会被压缩 */
-  min-height: 80px; /* 设置最小高度确保显示完整 */
-}
-
-.present-tiers h5 {
-  margin: 0 0 12px 0;
-  font-size: 0.875rem;
-  font-weight: 600;
-  color: #374151;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
 }
 
 .present-tier-buttons {
+  width: 100%;
   display: flex;
-  gap: 8px;
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
@@ -1465,9 +1440,8 @@ input[type='color'] {
 
 .present-tier-btn {
   background: #6b7280;
-  color: white;
+  color: black;
   border: none;
-  border-radius: 6px;
   padding: 10px 16px; /* 增加内边距确保按钮足够大 */
   cursor: pointer;
   font-weight: 600;
@@ -1493,6 +1467,7 @@ input[type='color'] {
   gap: 16px;
   flex-shrink: 0; /* 确保底部栏不会被压缩 */
   min-height: 60px; /* 设置最小高度 */
+  display: none;
 }
 
 .present-progress {
@@ -1503,19 +1478,22 @@ input[type='color'] {
   width: 100%;
   height: 6px;
   background: #e5e7eb;
-  border-radius: 3px;
+  border-radius: 10rem;
   overflow: hidden;
 }
 
 .present-progress-fill {
   height: 100%;
-  background: linear-gradient(90deg, #2563eb, #3b82f6);
-  border-radius: 3px;
+  background: linear-gradient(
+    90deg,
+    var(--color-primary-light),
+    var(--color-primary-dark)
+  );
+  border-radius: 10rem;
   transition: width 0.3s ease;
 }
 
 .present-actions {
-  display: flex;
   gap: 8px;
 }
 
@@ -1755,9 +1733,6 @@ input[type='color'] {
 
 /* 键盘快捷键提示 */
 .present-shortcuts {
-  position: absolute;
-  bottom: 20px;
-  left: 20px;
   background: rgba(0, 0, 0, 0.8);
   color: white;
   padding: 8px 12px;
@@ -2143,6 +2118,7 @@ body.modal-open {
   font-size: 1.5rem;
   border-radius: 50%;
   border: none;
+  color: white;
   background-color: var(--color-primary);
   cursor: pointer;
 }
