@@ -1263,13 +1263,6 @@ input[type='color'] {
   visibility: visible;
 }
 
-/* 快速分级区域 */
-.element-modal-tiers {
-  width: 100%;
-  flex-shrink: 0; /* 确保分级栏不会被压缩 */
-  background-color: var(--color-background);
-}
-
 .element-modal-tier-buttons {
   width: 100%;
   display: flex;
@@ -1298,57 +1291,12 @@ input[type='color'] {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
-/* 响应式设计 */
-@media (max-width: 768px) {
-  .element-modal-tiers {
-    padding: 12px 16px; /* 减少内边距但保持可见性 */
-    min-height: 70px; /* 确保移动端也有足够高度 */
-  }
-
-  .element-modal-buttons {
-    gap: 6px;
-    justify-content: center;
-  }
-
-  .element-modal-tier-btn {
-    padding: 8px 12px; /* 适当减少内边距但保持可点击性 */
-    font-size: 0.75rem;
-    min-width: 55px; /* 保持足够的最小宽度 */
-  }
-}
-
-/* 针对高度不足的屏幕进行额外优化 */
-@media (max-height: 600px) {
-  .element-modal-tiers {
-    padding: 8px 12px;
-    min-height: 60px;
-  }
-
-  .element-modal-tier-btn {
-    padding: 6px 10px;
-    font-size: 0.7rem;
-    min-width: 50px;
-  }
-}
-
-/* 键盘快捷键提示 */
-.element-modal-shortcuts {
-  background: rgba(0, 0, 0, 0.8);
-  color: white;
-  padding: 8px 12px;
-  border-radius: 6px;
-  font-size: 0.75rem;
-  opacity: 0.7;
-  transition: opacity 0.2s ease;
-}
-
 /* 键盘快捷键提示 */
 .element-shortcuts {
   position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  top: 0;
-  margin-top: 1rem;
+  left: 0;
+  bottom: 0;
+  margin: 1rem;
   background: rgba(0, 0, 0, 0.8);
   color: white;
   padding: 8px 12px;
@@ -1871,9 +1819,8 @@ body.modal-open {
   width: 100dvw;
   height: 100dvh;
   inset: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  display: grid;
+  place-items: center;
   z-index: 4500;
   opacity: 0;
   visibility: hidden;
@@ -1889,9 +1836,7 @@ body.modal-open {
 
 .element-modal-content {
   position: absolute;
-  inset: 10% 20%;
-  transform: scale(0.9);
-  max-height: 90dvh;
+  max-height: 90vh;
   transition: transform var(--transition-slow);
   display: flex;
   flex-direction: column;
@@ -1905,10 +1850,6 @@ body.modal-open {
 .element-modal-close:hover {
   background: var(--color-surface-variant);
   color: var(--color-text-primary);
-}
-
-.element-modal-image {
-  text-align: center;
 }
 
 .element-modal-image img {
