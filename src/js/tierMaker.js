@@ -243,7 +243,14 @@ export class TierMaker {
     domtoimage.toPng(node)
       .then(function (dataUrl) {
         const link = document.createElement('a')
-        link.download = 'export.png'
+        // 获取分级列表名称
+        const sectionTitle = document.getElementById('sectionTitle');
+        const title = sectionTitle && sectionTitle.value ? sectionTitle.value : 'tierList';
+        // 生成文件名：{title}-YYYYMMDD-时间戳.png
+        const now = new Date();
+        const date = now.toISOString().split('T')[0].replace(/-/g, ''); // YYYYMMDD 格式
+        const timestamp = Date.now();
+        link.download = `${title}-${date}-${timestamp}.png`
         link.href = dataUrl
         link.click()
       })
